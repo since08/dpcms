@@ -1,0 +1,13 @@
+var cf_table = $('.cf_race_table .cf_table_body');
+cf_table.html('');
+
+var html = "<%= j(render('search_content', remote: true)) %>";
+cf_table.append(html);
+
+$('.cf_search_content tbody .base-info').bind('click', function(){
+    var id = $(this).closest('tr').data('id');
+    var name = $(this).closest('tr').data('name');
+    $('#crowdfunding_race_id').val(id)
+    $('#search_race_input input').val(name)
+    $(this).closest(".ui-dialog").find('.ui-dialog-titlebar-close').click();
+});

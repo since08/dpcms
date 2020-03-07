@@ -1,0 +1,20 @@
+- resource.race_extra_en || resource.build_race_extra_en
+%div
+  = semantic_form_for @race_extra, method: :post,
+                                   url: quick_update_admin_race_race_extras_path(@race) do |f|
+    = f.inputs do
+      = f.input :race, collection: [[@race.name, @race.id]], prompt: true
+      = multilingual_editor_switch
+      %li#markdown_cn
+        ~ f.text_area :schedule_memo
+      %li#markdown_en
+        = f.semantic_fields_for :race_extra_en do |form|
+          ~ form.text_area :schedule_memo
+    = f.submit
+
+:javascript
+    $(function() {
+        dpEditor.call($('#race_extra_schedule_memo'), $('form.race_extra'));
+        dpEditor.call($('#race_extra_race_extra_en_attributes_schedule_memo'), $('form.race_extra'),
+         { placeholder: 'Here to enter text...' });
+    });

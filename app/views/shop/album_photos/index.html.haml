@@ -1,0 +1,10 @@
+= render 'index'
+:javascript
+  $(function() {
+    $('a.fancybox').fancybox();
+    albumPhotos.bind_changed_get_photos($('#album'));
+    $('#album').trigger('change');
+  });
+
+
+

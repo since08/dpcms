@@ -1,0 +1,37 @@
+# rubocop:disable Metrics/BlockLength
+context.instance_eval do
+  counter = user.counter
+  attributes_table do
+    row(:user_uuid)
+    row(:user_name)
+    row(:nick_name)
+    row(:avatar) { avatar(user.avatar_path, size: 100) }
+    row(:gender)
+    row(:email)
+    row(:mobile)
+    row(:birthday)
+    row(:reg_date)
+    row(:last_visit)
+    row(:signature)
+    row(:login_count)
+    row(:mark)
+    row(:created_at)
+    row(:updated_at)
+    row('关注') do
+      a(counter.following_count, href: followings_admin_user_path(user))
+    end
+    row('粉丝') do
+      a(counter.follower_count, href: followers_admin_user_path(user))
+    end
+  end
+  a("说说 (#{counter.short_topic_count})",
+    href: admin_user_topics_path(q: { user_id_eq: resource.id, body_type_eq: 'short' }),
+    class: 'button')
+  a("长帖 (#{counter.short_topic_count})",
+    href: admin_user_topics_path(q: { user_id_eq: resource.id, body_type_eq: 'long' }),
+    class: 'button')
+  a("动态 (#{counter.short_topic_count})",
+    href: dynamics_admin_user_path(q: { user_id_eq: resource.id, body_type_eq: 'long' }),
+    class: 'button',
+    'data-remote' => true)
+end

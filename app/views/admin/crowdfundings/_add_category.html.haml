@@ -1,0 +1,5 @@
+%div.cf_add_category
+  = form_tag add_category_admin_crowdfunding_path(resource), method: :post, remote: true do
+    = text_field_tag 'name', nil, placeholder: '请输入栏目名...'
+    = submit_tag '提交'
+

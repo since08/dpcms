@@ -1,0 +1,8 @@
+$('.increase_image').parents(".ui-dialog").remove();
+
+var html = "<%= j(render('increase_image', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '450px',
+    title: '牌手轮播图'
+});

@@ -1,0 +1,14 @@
+%div
+  %div
+    %form{class: 'search_reply_template_form left', action: admin_reply_templates_path(format: :json, per_page: 10), data: { remote: true }}
+      %input{name: 'q[content_contains]', type: 'search', id: 'input_search_reply_template'}
+      %input{name: 'submit', type: 'submit', value: '搜索', id: 'btn_search_reply_template'}
+    %span{style: 'padding: 15px;', class: 'left'}
+      = link_to '新增回复', new_admin_reply_template_path, remote: true
+
+  %table.reply_templates
+    %thead
+      %tr
+        %th ID
+        %th 模版内容
+    %tbody

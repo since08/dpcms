@@ -1,0 +1,5 @@
+var html = "<%= j(render('delete_form', remote: true)) %>";
+$(html).dialog({
+  modal: true,
+  title: '删除帖子'
+});

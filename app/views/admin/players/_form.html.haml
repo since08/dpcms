@@ -1,0 +1,18 @@
+= semantic_form_for [:admin, @player] do |f|
+  = f.inputs name: '牌手管理' do
+    = f.input :avatar, as: :file
+    %li
+      %div= image_tag('', id: 'cropbox')
+      %label 图片预览
+      %div{style: 'width:100px; height:100px; overflow:hidden; margin-top: 14px;'}
+        = image_tag(@player.avatar_thumb, id: 'img_preview')
+    - %w[x y w h].each do |attr|
+      = f.hidden_field "crop_#{attr}"
+    = f.input :name
+    = f.input :nick_name
+    = f.input :country, as: :string
+    = f.input :dpi_total_earning
+    = f.input :dpi_total_score
+    = f.input :memo
+    = f.actions
+

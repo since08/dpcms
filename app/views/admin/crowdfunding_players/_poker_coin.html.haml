@@ -1,0 +1,66 @@
+- cf_rank = resource&.crowdfunding_rank
+- orders = resource.crowdfunding_orders.paid_status
+%div.cf_poker_coin
+  %div.top
+    %span
+      %div
+        %span #{resource.player&.name} (#{resource.player&.nick_name})
+      %div
+        %span 参赛名次：
+        %span.color-blue= cf_rank.ranking
+      %div
+        %span 是否进入钱圈：
+        %span.color-blue= cf_rank.awarded ? '是' : '否'
+      %div
+        %span 是否进入决赛：
+        %span.color-blue= cf_rank.finaled ? '是' : '否'
+      %div
+        %span 赢得奖金(元)：
+        %span.color-blue= cf_rank.earning
+      %div.indent
+        %span 扣税(元)：
+        %span.color-blue= cf_rank.deduct_tax
+      %div.indent
+        %span 出让股份：
+        %span.color-blue #{resource.sell_stock}%
+      %div.indent
+        %span 出让金额：
+        %span.color-blue #{cf_rank.sale_amount}
+        %span{style: 'margin-left: 29px'} 出让份额：
+        %span.color-blue #{resource.stock_number}
+        %span份
+      %div.indent
+        %span 平台扣税：
+        %span.color-blue #{cf_rank.platform_tax}%
+        %hr{width:"32%", align: "left"}
+        %span 众筹奖金：
+        %span.color-blue= cf_rank.total_amount
+        %span{style: 'margin-left: 29px'} 单份金额：
+        %span.color-blue= cf_rank.unit_amount
+
+    %span
+      %div
+        %span 下发用户列表
+        - if resource.completed?
+          %span.color-red ( 已经下发 )
+      %div
+        %table
+          %tr
+            %td 姓名
+            %td 手机
+            %td 购买金额
+            %td 购买份数
+            %td 应得扑客币
+          - orders.each do |order|
+            %tr
+              %td= order.user.nick_name
+              %td= order.user.mobile
+              %td= order.order_stock_money
+              %td= order.order_stock_number
+              %td.color-blue= (cf_rank.unit_amount * order.order_stock_number * 100).to_i
+
+  %div.bottom
+    - if resource.waiting? && orders.count > 0
+      %span= button_to '确认下发', poker_coin_admin_crowdfunding_crowdfunding_player_path(@crowdfunding, resource), method: :post, data: {confirm: '下发后将不可撤回，请谨慎操作！！'}
+    - if resource.completed?
+      %span= link_to '前往扑客币管理', admin_poker_coins_path+'?q[typeable_type_eq]=CrowdfundingPlayer&q[typeable_id_equals]='+resource.id.to_s

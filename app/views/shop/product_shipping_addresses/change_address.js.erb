@@ -1,0 +1,6 @@
+var html = "<%= j(render('change_address', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '40%',
+    title: '修改地址'
+});

@@ -1,0 +1,36 @@
+# rubocop:disable Metrics/BlockLength
+context.instance_eval do
+  column :id
+  column '用户' do |topic|
+    link_to user_profile_admin_user_path(topic.user) do
+      avatar(topic.user.avatar_path)
+    end
+  end
+  column '内容', :body, class: 'body-width' do |topic|
+    render partial: 'index_body', locals: { resource: topic }
+  end
+  column '类别', :body_type do |topic|
+    UserTopic::BODY_TYPE[topic.body_type]
+  end
+  column '发布时间', :created_at
+  column '地点', :address_title
+  column '阅读量', sortable: 'user_topic_counters.page_views' do |topic|
+    topic.counter.page_views
+  end
+  column '点赞数', sortable: 'user_topic_counters.likes' do |topic|
+    link_to topic.counter.likes, like_list_admin_user_topic_path(topic)
+  end
+  column '评论数', sortable: 'user_topic_counters.comments' do |topic|
+    link_to topic.counter.comments, admin_user_topic_path(topic) + '#comment'
+  end
+  column '精华', :recommended
+  actions name: '操作', defaults: false do |topic|
+    if topic.recommended
+      item '取消精华', unrecommend_admin_user_topic_path(topic), method: :patch, class: 'member_link'
+    else
+      item '加入精华', recommend_admin_user_topic_path(topic), method: :patch, class: 'member_link'
+    end
+    item '查看', admin_user_topic_path(topic), class: 'member_link'
+    item '删除', delete_admin_user_topic_path(topic), remote: true, class: 'member_link'
+  end
+end

@@ -1,0 +1,577 @@
+"zh-CN":
+  activerecord:
+    models:
+      admin_role: "后台角色"
+      admin_user: "管理员"
+      admin_comment: "管理员评论"
+      app_version: "app版本管理"
+      activity: "活动"
+      banner: "首页banner"
+      dashboard: "首页"
+      race: "赛事"
+      race_rank: "赛事排名"
+      race_host: "赛事主办方"
+      race_schedule: '赛程表'
+      race_blind: '盲注结构'
+      race_tag: '赛事标签'
+      race_extra: '赛事额外信息'
+      category: "分类"
+      sub_races: "赛事边赛"
+      sub_race: "赛事边赛"
+      headline: "首页头条"
+      hot_info: "热门资讯"
+      ticket: "赛票"
+      ticket_info: "门票数量信息"
+      purchase_order: "订单"
+      player: '牌手'
+      player_image: "牌手照片"
+      info: '资讯'
+      info_type: '资讯类别'
+      info_counter: "资讯计数器"
+      video: '视频管理'
+      video_type: '视频类别'
+      video_group: '视频组别'
+      video_counter: '视频计数器'
+      admin_sys_log: '日志管理'
+      user: '用户管理'
+      user_extra: '实名认证'
+      feedback: '意见反馈'
+      bill: '易联支付'
+      wx_bill: '微信支付'
+      product_wx_bill: '微信账单'
+      weixin_user: '微信用户'
+      test_user: '测试用户'
+      sms_log: '短信日志'
+      invite_code: '邀请码'
+      template_type: '模版类别'
+      offline_race_order: '线下订单'
+      comment: '评论管理'
+      reply: '回复管理'
+      reply_template: '回复模板'
+      user_tag: '用户标签管理'
+      topic_view_rule: '浏览量管理'
+      crowdfunding: '众筹管理'
+      crowdfunding_banner: '众筹Banner'
+      crowdfunding_order: '众筹订单'
+      crowdfunding_player: '众筹牌手'
+      poker_coin: '扑客币'
+      crowdfunding_report: '赛报管理'
+      release: '发布管理'
+      user_topic: '社交中心'
+      j_user: '极光用户'
+      user_topic_report: '举报管理'
+    attributes:
+      album:
+        name: "相册名"
+      album_photo:
+         album: "所属相册"
+      race_en:
+        logo: "赛事英文图片"
+      app_version:
+        version: "版本号"
+        platform: "app平台"
+        force_upgrade: "强制升级"
+        content: "更新内容"
+        title: "更新标题"
+      activity_en:
+        pushed_img: "英文首页竖图"
+        banner: "英文活动横图"
+      activity:
+        tag: "活动标签"
+        title: "活动标题"
+        pushed_img: "首页竖图"
+        banner: "活动横图"
+        description: "活动描述"
+        link: "h5链接"
+        activity_time: "活动时间"
+        pushed: "推送到首页"
+        level: "排序"
+        start_push: "推送开始时间"
+        end_push: "推送结束时间"
+        push_type: "推送类型"
+      race:
+        name: "赛事标题"
+        logo: "赛事图片"
+        prize: "奖池"
+        location: "比赛地点"
+        schedule_begin_time: "赛程开始时间"
+        begin_date: "开始日期"
+        end_date: "结束日期"
+        status: "赛事状态"
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        ticket_status: "售票状态"
+        ticket_price: "买入"
+        published: "发布情况"
+        ticket_sellable: "是否有售票功能"
+        describable: "是否有详情内容"
+        roy: "是否结算积分"
+        parent: "所属主赛"
+        blind: "起始筹码"
+        participants: "参数人数"
+        race_host: "主办方"
+        required_id_type: "购票所需身份类型"
+      ticket_info:
+        e_ticket_number: "总电子票数"
+        entity_ticket_number: "总实体票数"
+        e_ticket_sold_number: "已售电子票数"
+        entity_ticket_sold_number: "已售实体票数"
+      ticket_en:
+        logo: "英文票务竖图"
+        banner: "英文票务横图"
+      ticket:
+        logo: "票务竖图"
+        banner: "票务横图"
+        race: "所属赛事"
+        title: "赛票标题"
+        role_group: "用户组可见"
+        price: "应付价格"
+        original_price: "原始价格"
+        ticket_class: "赛票类型"
+        description: "赛票描述"
+        status: "状态"
+      race_desc:
+        description: "赛事描述"
+        schedules: "日程信息"
+      admin_user:
+        email: "邮箱"
+        sign_in_count: "登陆次数"
+        current_sign_in_at: "当前登录"
+        last_sign_in_at: "上次登录时间"
+        last_sign_in_ip: "上次登录地点"
+        created_at: "注册时间"
+        password: "密码"
+        password_confirmation: "确认密码"
+      purchase_order:
+        ticket_name: '票务名称'
+        ticket_type: "票务类型"
+        email: "邮箱"
+        address: "地址"
+        consignee: "收货人"
+        mobile: "手机号"
+        order_number: "订单编号"
+        original_price: "订单总金额(元)"
+        price: "小计金额(元)"
+        final_price: "实付金额(元)"
+        status: "订单状态"
+        created_at: "下单时间"
+        updated_at: "更新时间"
+        unpaid: '待付款'
+        paid: '待发货'
+        delivered: '已发货'
+        completed: '已完成'
+        canceled: '已取消'
+        ticket_type: '票务类型'
+        user_id: '用户'
+        user_user_uuid: '用户ID'
+        user_email_or_user_mobile: '用户账户(手机或邮箱)'
+        invite_code: '邀请码'
+        invite_person_name: '邀请人'
+      user_extra:
+        user: '用户'
+        user_user_uuid: 'UUID'
+        user_nick_name: '用户昵称'
+        user_id: '用户'
+        real_name: "真实姓名"
+        image: '图片'
+        cert_no: '证件号'
+        cert_type: '证件类型'
+        status: '实名状态'
+        memo: '审核信息'
+        default: '默认实名'
+        is_delete: '使用情况'
+        need_auth: '需要审核'
+        created_at: '创建时间'
+        updated_at: '修改时间'
+      reply_template:
+        source: '类别'
+        content: '内容'
+        type_id: '所属类别'
+        type_name: '所属类别'
+        created_at: '创建时间'
+        updated_at: '修改时间'
+      player:
+        player_id: '牌手id'
+        year: '年份'
+        follows_count: '关注度'
+        name: '姓名'
+        avatar: '头像'
+        gender: '性别'
+        country: '国籍'
+        dpi_total_earning: 'DPI总奖金'
+        gpi_total_earning: 'GPI总奖金'
+        dpi_total_score: 'DPI总积分'
+        gpi_total_score: 'GPI总积分'
+        memo: '备注'
+        lairage_rate: '进圈率(%)'
+        final_rate: '决赛率(%)'
+        nick_name: '昵称'
+        logo: '牌手列表图'
+      race_rank:
+        ranking: '名次'
+        score: '得分'
+        earning: '赢入奖金'
+        race: "所属赛事"
+        player: "所属牌手"
+      race_blind:
+        level: '级别'
+        small_blind: '小盲注'
+        big_blind: '大盲注'
+        ante: '前注'
+        race_time: '时间'
+        content: '文字说明'
+        race: "所属赛事"
+        blind_type: "类型"
+      race_host:
+        name: '主办方名称'
+        created_at: "创建时间"
+        updated_at: "更新时间"
+      info:
+        title: '名称'
+        source_type: '来源类别'
+        source: '来源内容'
+        race_tag_id: '标签'
+        date: '日期'
+        top: '置顶'
+        published: '发布'
+        image: '图片'
+        info_type_id: '类别'
+        image_thumb: '图片缩略图'
+        description: '图文内容'
+        created_at: '创建日期'
+        updated_at: '更新日期'
+        is_show: '中文'
+        en_is_show: '英文'
+        race_tag_name: '标签'
+        topic_likes: '点赞数'
+        topic_comments: '评论数'
+        page_views: '阅读量(真实)'
+        total_views: '阅读量'
+        view_increment: '阅读量(增量)'
+      headline:
+        title: '头条标题'
+        source_type: '来源类型'
+        source_title: '来源标题'
+        source: '来源'
+      hot_info:
+        source_type: '来源类型'
+        source_title: '来源标题'
+        source: '来源'
+      banner:
+        image: '图片'
+        link: '链接'
+        source_type: '来源类型'
+        source_title: '来源标题'
+        source: '来源'
+      info_type:
+        name: '类别名称'
+        published: '是否发布'
+        created_at: '创建时间'
+        updated_at: '修改时间'
+        level: '级别'
+        topped: '置顶的资讯'
+      race_schedule:
+        schedule: 'Day'
+        begin_date: '日期'
+        begin_time: '开始时间'
+        created_at: "创建时间"
+        updated_at: "更新时间"
+      video:
+        name: '名称'
+        title_desc: '标题'
+        video_link: '视频链接'
+        cover_link: '封面链接'
+        description: '描述'
+        video_type_id: '类别'
+        video_duration: '时长'
+        is_main: '主视频'
+        is_show: '中文'
+        en_is_show: '英文'
+        video_group: '组别名'
+        race_tag_id: '标签'
+        top: '置顶'
+        published: '发布'
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        race_tag_name: '标签'
+        topic_likes: '点赞数'
+        topic_comments: '评论数'
+        page_views: '阅读量(真实)'
+        total_views: '阅读量'
+        view_increment: '阅读量(增量)'
+      video_type:
+        name: '名称'
+        level: '级别'
+        published: '发布'
+        created_at: "创建时间"
+        updated_at: "更新时间"
+      video_group:
+        name: "名称"
+        created_at: "创建时间"
+        updated_at: "更新时间"
+      admin_sys_log:
+        operation_type: '操作模块'
+        operation_id: '操作ID'
+        action: '动作'
+        admin_user_id: '操作人'
+        mark: '操作信息'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      user:
+        user_uuid: 'UUID'
+        user_name: '扑客ID'
+        nick_name: '昵称'
+        gender: '性别'
+        mobile: '手机号'
+        email: '邮箱'
+        password: '密码'
+        password_confirmation: '确认密码'
+        password_salt: '盐值'
+        avatar: '头像'
+        birthday: '生日'
+        reg_date: '注册日期'
+        last_visit: '上次登录时间'
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        login_count: "登录次数"
+        signature: "签名"
+        role: "角色"
+        mark: "备注"
+        user_extra_status: "实名状态"
+        total_number: '购票次数'
+        total_fee: '消费金额'
+        total_poker_coins: '总扑客币'
+      feedback:
+        content: '反馈内容'
+        contact: '联系方式'
+        dealt: '已处理'
+      bill:
+        order_number: '订单编号'
+        amount: '付款金额(元)'
+        pay_time: '支付时间'
+        trade_number: '交易流水号'
+        trade_status: '交易状态码'
+        trade_msg: '交易信息'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        ticket_name: '票务名称'
+      wx_bill:
+        ticket_name: '票务名称'
+        bank_type: '付款银行'
+        cash_fee: '现金支付金额(元)'
+        fee_type: '货币类型'
+        out_trade_no: '订单编号'
+        time_end: '支付时间'
+        total_fee: '付款金额(元)'
+        transaction_id: '交易流水号'
+        trade_type: '交易方式'
+        result_code: '交易状态码'
+        return_code: '交易信息'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        open_id: '微信ID'
+      weixin_user:
+        user_id: '绑定用户'
+        open_id: '微信ID'
+        nick_name: '微信昵称'
+        sex: '性别'
+        province: '省份'
+        city: '城市'
+        country: '国家'
+        head_img: '头像'
+        privilege: '权限'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      sms_log:
+        mobile: '手机号'
+        content: '短信内容'
+        error_msg: '返回信息'
+        fee: '计费次数'
+        send_time: '发送时间'
+        arrival_time: '到达时间'
+        created_at: '创建时间'
+        updated_at: "修改时间"
+        status: '发送状态'
+      invite_code:
+        name: '姓名'
+        mobile: '手机号'
+        email: '邮箱'
+        code: '邀请码'
+        coupon_type: '优惠类型'
+        coupon_number: '优惠力度'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        success_count: "APP订单(单)"
+        offline_count: "线下订单(单)"
+        total_fee: "推荐成功总额(元)"
+      offline_race_order:
+        invite_code_id: '邀请人'
+        invite_code: '邀请码'
+        mobile: '手机号'
+        email: '邮箱'
+        name: '姓名'
+        ticket: '票务名称'
+        price: '付款价格'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      template_type:
+        name: '类别名称'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      race_tag:
+        name: '名称'
+        name_en: '英文名称'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      comment:
+        topic_type: '话题'
+        body: '内容'
+        deleted_at: '删除时间'
+        deleted_reason: '删除原因'
+        created_at: '评论时间'
+        updated_at: '更新时间'
+        recommended: '精选'
+        deleted: '删除'
+        user_nick_name: '用户昵称'
+        body_or_replies_body: '评论或回复内容'
+        user_nick_name_or_replies_user_nick_name: '用户昵称'
+        created_at_replies_created_at: '评论或回复时间'
+      user_tag:
+        name: 名称
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      topic_view_rule:
+        day: '第几天'
+        interval: '间隔时间(分钟)'
+        min_increase: '最小值'
+        max_increase: '最大值'
+        hot: '热增长'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      crowdfunding:
+        race_name: '赛事名称'
+        race_logo: '赛事图片'
+        race_location: '赛事地点'
+        race_period: '赛事时间'
+        player_count: '牌手人数'
+        cf_total_money: '众筹总额'
+        cf_offer_money: '认购总额'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        race: '赛事'
+        master_image: '主图'
+        cf_cond: '入赛资格'
+        expire_date: '截止时间'
+        publish_date: '公布时间'
+        award_date: '发奖时间'
+        description: '众筹描述'
+        published: '发布'
+      crowdfunding_banner:
+        image: '图片'
+        link: '链接'
+        source_type: '来源类型'
+        source_title: '来源标题'
+        source: '来源'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      crowdfunding_player:
+        name: '姓名(昵称)'
+        logo: '牌手列表图'
+        player_name: '姓名'
+        join_slogan: '参赛口号'
+        sell_stock: '出让股份(%)'
+        stock_number: '股份划分(份)'
+        stock_unit_price: '每股单价(元)'
+        cf_money: '众筹总额(元)'
+        limit_buy: '限购份数(份)'
+        fans: '已认购人数'
+        order_stock_number: '已认购份数'
+        order_stock_money: '已认购金额'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        published: "发布"
+      poker_coin:
+        number: '扑客币'
+        memo: '备注'
+        typeable_type: '类别'
+        typeable_id: '所属ID'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        user_uuid: '用户ID'
+        user_name: '用户'
+        mobile: '手机号码'
+        avatar: '头像'
+        typeable: '来源类别'
+        orderable: '抵扣订单'
+        user_mobile: '用户手机'
+        user_nick_name: '用户昵称'
+      crowdfunding_order:
+        order_number: '订单编号'
+        order_stock_number: '认购份数'
+        order_stock_money: '认购单价'
+        total_money: '认购总价'
+        deduction_price: '扑客币抵扣'
+        final_price: '实付价格'
+        pay_time: '支付时间'
+        paid: '是否支付'
+        record_status: '进展状态'
+        created_at: '创建时间'
+      crowdfunding_report:
+        record_time: '比赛时间'
+        name: '赛事标题'
+        title: '小标题'
+        level: '级别'
+        small_blind: '小盲注'
+        big_blind: '大盲注'
+        ante: '前注'
+        crowdfunding_player_id: '众筹牌手'
+        description: '图文描述'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        name_or_title: '标题'
+        crowdfunding_player: '众筹牌手'
+        crowdfunding_player_player_name: '牌手姓名'
+      release:
+        keywords: '模块名'
+        published: '发布'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      user_topic:
+        user_id: 用户ID
+        title: 标题
+        body: 内容
+        body_type: 类别
+        recommended: 是否精选
+        published: 是否发布
+        published_time: 发布时间
+        abnormal: 是否异常
+        deleted: 是否删除
+        deleted_at: 删除时间
+        deleted_reason: 删除原因
+        address_title: 地点
+        created_at: 发布时间
+      user_topic_counter:
+        page_views: 阅读数
+        likes: 点赞数
+        comments: 评论数
+        reports: 被举报数
+      user_topic_report:
+        user_nickname: 被举报人
+        report_user_nickname: 举报人
+        report_type: 举报类别
+        report_times: 举报次数
+        topic_title: 话题标题
+        body: 举报的原因
+        description: 私信内容
+        created_at: 举报的时间
+      j_user:
+        user_id: '用户ID'
+        user_user_uuid: '用户ID'
+        user_nick_name: '用户昵称'
+        username: '昵称'
+        nick_name: '用户名'
+        created_at: "创建时间"
+      format: "%{attribute}%{message}"
+      messages:
+        blank: '不能为空'
+

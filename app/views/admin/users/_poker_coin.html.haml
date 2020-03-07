@@ -1,0 +1,32 @@
+%div.show_user_dynamics
+  %div.person_info
+    %div.u-left
+      %span
+        = avatar(resource.avatar_path)
+    %div.u-right
+      %div
+        %span.nick_name #{resource.nick_name}
+      %div
+        %span 扑客币总数：
+        %span.color-blue= resource.counter.total_poker_coins
+  - @return_lists.each do |item|
+    - date = item[0]
+    - lists = item[1]
+
+    %div.my_dynamics
+      %div.d-left
+        - if date.eql?(Date.today.strftime('%Y%m%d'))
+          %div{style: 'font-size: 18px'} 今天
+        - elsif date.eql?(Date.yesterday.strftime('%Y%m%d'))
+          %div{style: 'font-size: 18px'} 昨天
+        - else
+          %div{style: 'font-size: 15px'} #{date[4,2]}.#{date[6,2]}
+      %div.d-right
+        %table
+          - lists.each do |list|
+            %div
+              %tr
+                %td= list.memo
+                %td.color-blue= list.number > 0 ? "+#{list.number}" : list.number
+  %div.index_foot
+    = paginate(@dynamics, remote: true)

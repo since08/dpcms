@@ -1,0 +1,31 @@
+= semantic_form_for [:admin, @crowdfunding, @crowdfunding_player] do |f|
+  = f.inputs do
+    = f.semantic_errors *f.object.errors.keys
+    = f.input :player_id, as: :hidden
+    %li
+      %label 牌手姓名
+      %span= @crowdfunding_player.player&.name
+    = f.semantic_fields_for :player do |t|
+      = t.input :logo, as: :attachment, required: true,
+                       hint: '图片最大为 2MB',
+                       image: proc { |o| o.preview_logo }
+      %li.cf_player_images_
+        = render 'player_images', player: t.object
+      = t.input :nick_name
+      = t.input :lairage_rate
+      = t.input :final_rate
+    = f.input :join_slogan
+    = f.input :sell_stock
+    = f.input :stock_number
+    = f.input :stock_unit_price
+    = f.input :limit_buy
+    = f.input :published
+    = f.semantic_fields_for :player do |t|
+      ~ t.text_area :description
+    = f.actions
+
+:javascript
+    $(function() {
+        dpEditor.call($('#crowdfunding_player_player_attributes_description'),
+         $('form.player'), { placeholder: "请输入牌手描述..." });
+    });

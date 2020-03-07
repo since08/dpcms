@@ -1,0 +1,86 @@
+- order = @purchase_order
+- user = order.user
+- user_extra = order.user_extra
+
+.user_info
+  .account
+    %h3 用户账户信息
+    %hr
+      %table
+        %tr
+          %td
+            %span 用户id：
+            %span= user.user_uuid
+          %td
+            %span 用户手机：
+            %span= user.mobile
+          %td
+            %span 用户邮箱：
+            %span= user.email
+  .authorize
+    %h3 用户实名信息
+    %hr
+      %table.user_extra
+        %tr
+          %td
+            %a{ href: "#{user_extra.image_path}", target: '_blank' }
+            %img.image{ src: "#{user_extra.image_path}" }
+          %td
+            .real_name
+              %span 用户姓名：
+              %span= user_extra.real_name
+            .card_id
+              - if user_extra.cert_type.eql?('chinese_id')
+                %span 身份证号：
+              - else
+                %span 用户护照：
+              %span= user_extra.cert_no
+
+            .status
+              %span 实名状态：
+              %span= I18n.t("user_extra.#{user_extra.status}")
+            - if user_extra.status.eql?('failed') && user_extra.memo.present?
+              .user_memo
+                %span 备忘信息：
+                %span= user_extra.memo
+          - if %w(unpaid paid).include?(order.status) && user_extra.status != 'passed'
+            %td
+              .order_audit
+                = button_to '审核通过', user_audit_admin_purchase_order_path(order), form_class: "audit_passed", remote: true, data: { confirm: "确定通过吗？" }
+                %button.audit_failed 审核不通过
+              .order_audit_hidden
+                = form_tag(user_audit_forbid_admin_purchase_order_path(order), method: 'post', remote: true) do
+                  = text_area_tag 'memo', nil, rows: 6, cols: 6, placeholder: '请输入不通过的理由！'
+                  .submit_box
+                    = submit_tag '提交', data: { confirm: '确定不通过吗？' }
+                    %button.cancel_audit 取消
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  -#<%= render 'user_extra', { user_extra: @purchase_order.user.user_extra, purchase_order: @purchase_order } %>

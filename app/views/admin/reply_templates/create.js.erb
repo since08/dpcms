@@ -1,0 +1,8 @@
+<% if @reply_template.errors.blank? %>
+$('form.reply_template').parents(".ui-dialog").remove();
+$('#input_search_reply_template').val('<%= @reply_template.content %>');
+$('#btn_search_reply_template').click();
+<% else %>
+var html = "<%= j(render('remote_form', remote: true)) %>";
+$('form.reply_template').replaceWith(html);
+<% end %>

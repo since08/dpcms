@@ -1,0 +1,19 @@
+%div.crowdfunding-new
+  = semantic_form_for [:admin, @crowdfunding], builder: ActiveAdmin::FormBuilder do |f|
+    = f.inputs do
+      = f.semantic_errors *f.object.errors.keys
+      = f.input :race_id, as: :hidden
+      %li#search_race_input
+        %label 赛事
+        %input{type: 'text', disabled: 'disabled', value: @crowdfunding.race&.name, placeHolder: '请搜索选择一个赛事'}
+        %label &nbsp;
+        =link_to '搜索赛事', race_table_admin_crowdfundings_path, remote: true
+      = f.input :master_image, as: :attachment, required: true,
+                       hint: '图片最大为 2MB',
+                       image: proc { |o| o.preview_image }
+      = f.input :cf_cond, required: true
+      = f.input :expire_date, required: true
+      = f.input :publish_date, required: true
+      = f.input :award_date, required: true
+      = render 'cf_infos', f: f
+      = f.actions

@@ -1,0 +1,52 @@
+%div#refund_show{style: 'min-width: 900px; width: 70%; margin: auto; font-size: 14px'}
+  %div.action{style: 'font-size: 16px;'}
+    %b 退换商品：
+    %b=I18n.t("product_refund.#{resource.status}")
+    - if resource.open?
+      %span{style: 'margin-left:30px;'}
+        =link_to '允许退款', agree_refund_shop_product_refund_path(resource), class: 'fancybox.ajax'
+      %span{style: 'margin-left:15px;'}
+        =link_to '拒绝退款', reject_refund_shop_product_refund_path(resource), class: 'fancybox.ajax'
+  %hr
+  %div.refund_items
+    %table
+      %thead
+        %tr
+          %th 商品名称
+          %th 商品图片
+          %th 原始价格
+          %th 实付价格
+          %th 购买数量
+          %th 商品参数
+      %tbody
+        - resource.product_refund_details.each do |item|
+          %tr
+            %th=item.product_order_item.product.title
+            %th=image_tag(item.product_order_item.product.icon_url.to_s, height: 150)
+            %th=item.product_order_item.original_price
+            %th=item.product_order_item.price
+            %th=item.product_order_item.number
+            %th=item.product_order_item.sku_value.join('，')
+  %hr
+  %div.refund_info
+    %p="用户昵称：#{resource.product_order.user.nick_name}"
+    %p="订单编号：#{resource.product_order.order_number}"
+    %p="退款编号：#{resource.refund_number}"
+    %p="申请类型：#{resource.product_refund_type.name}"
+    %p="退款金额：#{resource.refund_price}"
+    %p="退款扑客币：#{resource.refund_poker_coins}"
+    %p="退换货说明：#{resource.memo}"
+    %p.refund_images
+      上传的凭证：
+      - resource.product_refund_images.each do |image|
+        %span=link_to image_tag(image.image_url, height: 150), image.image_url
+  %hr
+  %p="审核备注：#{resource.admin_memo}"
+
+:javascript
+  $(document).ready(function() {
+    $("#refund_show .action a").fancybox({
+      minWidth: '200px'
+    });
+    $(".refund_images span a").fancybox();
+  });

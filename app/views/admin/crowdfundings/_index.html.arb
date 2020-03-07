@@ -1,0 +1,23 @@
+context.instance_eval do
+  column(:master_image, sortable: false) { |cf|  image_tag(cf.master_image, height: 150) }
+  column(:race_name) { |cf| cf.race.name }
+  column(:race_location) { |cf| cf.race.location }
+  column(:race_period) { |cf| race_period cf.race }
+  column(:player_count) { |cf| cf.player_count }
+  column(:cf_total_money) { |cf| cf.cf_total_money }
+  column(:cf_offer_money) { |cf| cf.cf_offer_money }
+  column :published
+  actions name: '操作', class: 'info_actions' do |cf|
+    if cf.published
+      item '取消发布', unpublish_admin_crowdfunding_path(cf),
+           data: { confirm: '确定取消吗？' }, method: :post
+    else
+      item '发布', publish_admin_crowdfunding_path(cf),
+           data: { confirm: '确定发布吗？' }, method: :post
+    end
+    item '牌手管理', admin_crowdfunding_crowdfunding_players_path(cf)
+    item '及时赛报', admin_crowdfunding_crowdfunding_reports_path(cf)
+  end
+end
+
+

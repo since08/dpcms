@@ -1,0 +1,17 @@
+context.instance_eval do
+  column :banner do |activity|
+    image_tag(activity.preview_banner, height: 105)
+  end
+  column :title
+  column :activity_time
+  column :pushed
+  actions do |activity|
+    if activity.pushed
+      item '取消推送', unpush_admin_activity_path(activity),
+           method: :post
+    else
+      item '推送首页', push_admin_activity_path(activity),
+           method: :post
+    end
+  end
+end

@@ -1,0 +1,17 @@
+context.instance_eval do
+  div class: 'type_info' do
+    ul class: 'ui-tabs-nav' do
+       li link_to '快速新建资讯', new_admin_info_path+"?type_id=#{info_type.id}"
+    end
+  end
+
+  div class: 'tab-content' do
+    attributes_table do
+      row(:id)
+      row(:name)
+      row(:published)
+      row(:level)
+      row(:updated_at)
+    end
+  end
+end

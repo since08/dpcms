@@ -1,0 +1,8 @@
+$('.cf_add_category').parents(".ui-dialog").remove();
+var html = "<%= j(render('add_category', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '45%',
+    title: '添加栏目',
+    position: { my: 'top', at: 'top+250' }
+});

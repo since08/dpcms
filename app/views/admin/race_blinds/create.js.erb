@@ -1,0 +1,7 @@
+<% if @race_blind.errors.blank? %>
+window.location.reload();
+<% else %>
+var html = "<%= j(render('form', remote: true)) %>";
+$('form.race_blind').replaceWith(html);
+SwtichBlindTypeInputs.call();
+<% end %>

@@ -1,0 +1,16 @@
+context.instance_eval do
+  column(:id)
+  column('用户昵称', sortable: false) do |refund|
+    refund.product_order.user.nick_name
+  end
+  column('订单编号', sortable: false) { |refund| refund.product_order.order_number }
+  column(:refund_number)
+  column(:status){ |refund| I18n.t("product_refund.#{refund.status}") }
+  column(:refund_price)
+  column(:refund_poker_coins)
+  actions(defaults: false) do |refund|
+    item I18n.t('active_admin.view'), resource_path(refund),
+        title: I18n.t('active_admin.view'),
+        class: 'member_link'
+  end
+end

@@ -1,0 +1,9 @@
+$('form.race_blind').parents(".ui-dialog").remove();
+var html = "<%= j(render('form', remote: true)) %>";
+// 为了dialog有标题
+$(html).dialog({
+    modal: true,
+    width: '60%',
+    title: '盲注结构'
+});
+SwtichBlindTypeInputs.call();

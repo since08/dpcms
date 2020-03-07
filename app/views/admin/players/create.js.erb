@@ -1,0 +1,8 @@
+<% if @player.errors.blank? %>
+$('form.player').parents(".ui-dialog").remove();
+$('#input_search_player').val('<%= @player.name %>');
+$('#btn_search_player').click();
+<% else %>
+var html = "<%= j(render('remote_form', remote: true)) %>";
+$('form.player').replaceWith(html);
+<% end %>

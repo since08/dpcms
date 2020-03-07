@@ -1,0 +1,27 @@
+context.instance_eval do
+  ul class: 'ui-tabs-nav' do
+    li link_to I18n.t('race.ticket_manage'), admin_race_tickets_path(sub_race)
+    li link_to '赛事排行榜', admin_race_race_ranks_path(sub_race)
+    li link_to '赛程表', admin_race_race_schedules_path(sub_race)
+    li link_to '盲注结构', admin_race_race_blinds_path(sub_race)
+  end
+  div class: 'tab-content' do
+    attributes_table do
+      row('主赛标题') { resource.parent.name }
+      row('边赛标题') { resource.name }
+      row('买入') { format_ticket_price(resource) }
+      row(:blind)
+      row(:prize) { format_prize(resource) }
+      row :participants
+      row :location
+      row(I18n.t('race.period')) { race_period(resource) }
+      row :schedule_begin_time
+      row :roy
+      row(:logo){ show_big_logo_link(resource) }
+      attributes_table_for resource.race_desc do
+        row(:schedules)
+      end
+    end
+  end
+  render 'marked_script'
+end

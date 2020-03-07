@@ -1,0 +1,26 @@
+.album_photo_index{
+  .index_actions{
+    text-align: center;
+    > span {
+      padding: 10px;
+    }
+  }
+}
+
+
+.album_photos{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-wrap: wrap;
+
+  .photo{
+    width: 150px;
+    height: 200px;
+    margin: 20px;
+  }
+
+  .photo_actions{
+    text-align: center;
+  }
+}
+

@@ -1,0 +1,16 @@
+%div
+  %table.index_table
+    %thead
+      %tr
+        %th 头像
+        %th 昵称
+        %th ID
+        %th 关注时间
+    %tbody
+      - @followings.each do |following|
+        %tr
+          %td= avatar(following.following.avatar_path)
+          %td= following.following.nick_name
+          %td= following.following_id
+          %td= following.created_at
+  = paginate(@followings, remote: true)

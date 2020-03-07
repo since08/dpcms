@@ -1,0 +1,8 @@
+%div{style: 'min-width: 300px;'}
+  %section#quick-errors
+    = render 'layouts/error_messages', object: @album
+
+  = semantic_form_for @album, url: quick_create_shop_albums_path, remote: true do |f|
+    = f.inputs do
+      = f.input :name
+    = f.submit data: { disable_with: '请稍等...' }

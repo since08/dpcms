@@ -1,0 +1,36 @@
+.courier
+  %h3(style='display:inline-block') 物流信息
+  %button.show_courier_edit(style='display:inline-block') 修改
+  %hr
+  .courier_info_show
+    %p
+      %span 快递公司：
+      %span=@purchase_order.courier
+    %p
+      %span 快递单号：
+      %span=@purchase_order.tracking_no
+  .courier_info_edit(style='display:none;')
+    = form_for @purchase_order, url: courier_admin_purchase_order_path(@purchase_order),
+               remote: true, method: :patch do |f|
+      = f.label '快递公司：'
+      = f.text_field :courier
+      %br
+      = f.label '快递单号：'
+      = f.text_field :tracking_no
+      = f.submit '更新'
+      %button.cancel_courier_edit 取消
+    %br
+
+:javascript
+  $(".show_courier_edit").bind('click', function(){
+        $(".courier_info_show").hide();
+        $(".courier_info_edit").show();
+        return false;
+   })
+
+   $(".cancel_courier_edit").bind('click', function(){
+        $(".courier_info_show").show();
+        $(".courier_info_edit").hide();
+        return false;
+   })
+  

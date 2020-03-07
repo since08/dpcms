@@ -1,0 +1,7 @@
+<% if @photo.errors.any? %>
+var html = "<%= escape_javascript(render 'layouts/error_messages', object: @photo) %>";
+$('#quick-errors').html(html);
+<% else %>
+$.fancybox.close();
+$('#album').trigger('change');
+<% end %>

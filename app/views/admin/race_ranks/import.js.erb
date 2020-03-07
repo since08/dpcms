@@ -1,0 +1,8 @@
+$('#import_ranks').parents(".ui-dialog").remove();
+
+var html = "<%= j(render('import_form', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '380px',
+    title: '批量导入牌手'
+});

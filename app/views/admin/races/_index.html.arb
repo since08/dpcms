@@ -1,0 +1,12 @@
+context.instance_eval do
+  column(:logo, sortable: false) { |race| logo_link_to_show(race) }
+  column(:name, sortable: false) { |race| editable_text_column race, :name}
+  column(:prize) { |race| format_prize(race) }
+  column(I18n.t('race.period'), sortable: :begin_date) { |race| race_period(race) }
+  column(:location, sortable: false)
+  column(:status, sortable: false) { |race| select_to_status(race) }
+  column(:published, sortable: false) { |race| publish_status_link(race) }
+  actions(defaults: false) { |race| index_table_actions(self, race) }
+end
+
+

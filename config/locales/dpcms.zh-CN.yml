@@ -1,0 +1,110 @@
+"zh-CN":
+  required_id_type:
+    any: '任意一种'
+    chinese_id: '中国身份证'
+    passport_id: '护照'
+  activity:
+    once: '推送一次'
+    once_a_day: '每日一次'
+  race:
+    unbegin: '未开始'
+    go_ahead: '进行中'
+    ended: '已结束'
+    closed: '已关闭'
+    publish: '发布赛事'
+    unpublish: '取消发布'
+    publish_notice: '已发布赛事成功'
+    unpublish_notice: '已取消发布赛事'
+    cancel_sell_notice: '已成功取消售票'
+    sellable_notice: '已成功开始售票'
+    cancel_sell_error: '非未售票状态下，不允许取消售票'
+    destroy_error: '已发布的赛事，不允许删除'
+    period: '赛事时间'
+    detail: '赛事详情'
+    list:   '赛事列表'
+    manage: '赛事管理'
+    ticket_manage: '票务管理'
+    cancel_sell_confirmation: '确定取消售票？'
+    cancel_sell: '取消售票'
+    sellable: '开始售票'
+    surplus_ticket: '剩余的票'
+  race_blind:
+    blind_struct: '盲注结构'
+    blind_content: '文字说明'
+  unpaid: '待付款'
+  paid: '待发货'
+  delivered: '已发货'
+  completed: '已完成'
+  canceled: '已取消'
+  order:
+    unpaid: '待付款'
+    paid: '待发货'
+    delivered: '已发货'
+    completed: '已完成'
+    canceled: '已取消'
+  refund:
+    none: ''
+    open: '退款中'
+    close: '退款失败'
+    completed: '退款完成'
+  coupon_type:
+    no_discount: '无优惠'
+    rebate: '折扣'
+    reduce: '减价'
+  user_extra:
+    init: '未提交'
+    pending: '审核中'
+    passed: '已实名'
+    failed: '未通过'
+  cert_type:
+    chinese_id: '身份证'
+    passport_id: '护照'
+  user:
+    basic: '普通'
+    banned: '禁用'
+  topic:
+    info: '资讯'
+    video: '视频'
+    usertopic: '说说|长帖'
+
+  player:
+    list: '牌手管理'
+  info:
+    source: '来源'
+    author: '作者'
+  ticket:
+    status:
+      unsold: '未售票'
+      selling: '售票中'
+      end: '售票结束'
+      sold_out: '已售完'
+    ticket_class:
+      single_ticket: '主票'
+      package_ticket: '套票'
+    role_group:
+      everyone: '所有人'
+      tester: '测试人员'
+  banner:
+    link: '外部链接'
+    race: '赛事'
+    video: '视频'
+    info: '资讯'
+  product:
+    entity: '实体商品'
+    virtual: '虚拟商品'
+  product_refund:
+    open: '待审核'
+    close: '拒绝退款'
+    completed: '成功退款'
+  express_code:
+    China:  '国内'
+    foreign: '国际'
+    transfer: '转运'
+  crowdfunding_order:
+    unpublished: '未公布'
+    success: '晋级成功'
+    failed: '失败'
+  user_topic_report:
+    im: 'IM'
+    short: '说说'
+    long: '长帖'

@@ -1,0 +1,12 @@
+context.instance_eval do
+  attributes_table do
+    row(:title)
+    row(:activity_time)
+    row(:pushed_img){ image_tag(activity.preview_pushed_img, height: 150) }
+    row(:banner){ image_tag(activity.preview_banner, height: 150) }
+    row(:link)
+    row(:tag)
+    row(:description)
+  end
+  render 'marked_script'
+end

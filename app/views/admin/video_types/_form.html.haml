@@ -1,0 +1,14 @@
+- @video_type.video_type_en || @video_type.build_video_type_en
+= semantic_form_for [:admin, @video_type] do |f|
+  = f.inputs name: '视频类别' do
+    %li
+      %div
+        %label 类别名称
+        %span 中文：
+        = f.text_field :name
+        %span{class: 'common_input_style_en'} 英文：
+        = f.semantic_fields_for :video_type_en do |eng_type|
+          = eng_type.text_field :name
+    = f.input :published
+    = f.input :level
+    = f.actions

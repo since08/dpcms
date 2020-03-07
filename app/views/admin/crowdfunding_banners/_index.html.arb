@@ -1,0 +1,30 @@
+context.instance_eval do
+  column(:image, sortable: false) { |banner|  image_tag(banner.image, height: 150) }
+  column(:source_type) { |banner| I18n.t("banner.#{banner.source_type}") }
+  column('来源地址') do |banner|
+    case banner.source_type
+      when 'race'
+        link_to banner.source_title, admin_race_path(banner.source)
+      when 'video'
+        link_to banner.source_title, admin_video_path(banner.source)
+      when 'info'
+        link_to banner.source_title, admin_info_path(banner.source)
+      else
+        link_to banner.link, banner.link
+    end
+  end
+  actions defaults: false do |banner|
+    item I18n.t('active_admin.edit'), edit_resource_path(banner), class: 'member_link'
+
+    if banner.published?
+      item '取消发布', unpublish_admin_banner_path(banner), method: :post, class: 'member_link'
+    else
+      item '发布', publish_admin_banner_path(banner), method: :post, class: 'member_link'
+      item I18n.t('active_admin.delete'), resource_path(banner),
+           class: 'member_link', method: :delete,
+           data:   { confirm: I18n.t('active_admin.delete_confirmation') }
+    end
+  end
+end
+
+

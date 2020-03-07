@@ -1,0 +1,9 @@
+- resource.race_schedule_en || resource.build_race_schedule_en
+= semantic_form_for [:admin, @race, resource] do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :race, collection: [[@race.name, @race.id]], prompt: true
+    = f.input :schedule, as: :embedded_string, embedded_html: :with_en
+    = f.input :begin_time
+  = f.actions
+

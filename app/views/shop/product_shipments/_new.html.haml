@@ -1,0 +1,5 @@
+= semantic_form_for [:shop, @product_order, @product_shipment], remote: true do |f|
+  = f.inputs do
+    = f.input :express_code_id, as: :select, collection: ExpressCode.published_lists, prompt: true
+    = f.input :shipping_number
+    = f.submit

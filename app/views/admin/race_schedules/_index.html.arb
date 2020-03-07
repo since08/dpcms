@@ -1,0 +1,25 @@
+context.instance_eval do
+  column(:schedule)
+  column(:begin_date) { |schedule| schedule.begin_time.strftime('%Y-%m-%d') unless schedule.begin_time.blank? }
+  column(:begin_time) do |schedule|
+    if schedule.begin_time.blank?
+        ' '
+    elsif schedule.begin_time.strftime('%H').to_i > 12
+        '下午 ' +  schedule.begin_time.strftime('%l:%M')
+    else
+        '上午 ' +  schedule.begin_time.strftime('%l:%M')
+    end
+  end
+  actions name: '操作', defaults: false do |schedule|
+    item I18n.t('active_admin.edit'), edit_resource_path(schedule),
+            title: I18n.t('active_admin.edit'),
+            class: 'edit_link member_link'
+
+    item I18n.t('active_admin.delete'), resource_path(schedule),
+             title: I18n.t('active_admin.delete'),
+             class: 'delete_link member_link',
+             method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')}
+  end
+end
+
+

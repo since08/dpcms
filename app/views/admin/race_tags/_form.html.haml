@@ -1,0 +1,5 @@
+- resource.race_tag_en || resource.build_race_tag_en
+= semantic_form_for [:admin, @race_tag] do |f|
+  = f.inputs name: '标签管理' do
+    = f.input :name, as: :embedded_string, embedded_html: :with_en
+    = f.actions

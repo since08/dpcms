@@ -1,0 +1,15 @@
+# config/settings.yml
+
+default: &default
+    cancel_order_template: 尊敬的用户，您的订单%s已取消。如需帮助，请拨打客服电话0755-23919844
+    shipping_template: 尊敬的用户，您的订单%s成功发送到您预留的收货地址。感谢您的信任！如需帮助，请拨打客服电话0755-23919844
+    payment_template: 尊敬的用户，您的订单%s付款成功！详情请登录扑客APP查看订单状态，感谢您的信任！如需帮助，请拨打客服电话0755-23919844
+
+development:
+    <<: *default
+
+test:
+    <<: *default
+
+production:
+    <<: *default

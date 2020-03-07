@@ -1,0 +1,19 @@
+context.instance_eval do
+  div class: 'invite_code' do
+    ul class: 'ui-tabs-nav' do
+       li link_to '添加新的邀请码', new_admin_invite_code_path
+    end
+  end
+
+  div class: 'tab-content' do
+    attributes_table do
+      row(:id)
+      row(:name)
+      row(:mobile)
+      row(:email)
+      row(:code)
+      row(:created_at)
+      row(:updated_at)
+    end
+  end
+end

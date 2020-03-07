@@ -1,0 +1,28 @@
+context.instance_eval do
+  # column(:title)
+  column(:source_type) { |headline| I18n.t("activerecord.models.#{headline.source_type.downcase}") }
+  column('来源地址') do |headline|
+    case headline.source_type
+      when 'Race'
+        link_to headline.source_title, admin_race_path(headline.source)
+      when 'Video'
+        link_to headline.source_title, admin_video_path(headline.source)
+      when 'Info'
+        link_to headline.source_title, admin_info_path(headline.source)
+    end
+  end
+  actions defaults: false do |headline|
+    item I18n.t('active_admin.edit'), edit_resource_path(headline), class: 'member_link'
+
+    if headline.published?
+      item '取消发布', unpublish_admin_headline_path(headline), method: :post, class: 'member_link'
+    else
+      item '发布', publish_admin_headline_path(headline), method: :post, class: 'member_link'
+      item I18n.t('active_admin.delete'), resource_path(headline),
+           class: 'member_link', method: :delete,
+           data:   { confirm: I18n.t('active_admin.delete_confirmation') }
+    end
+  end
+end
+
+

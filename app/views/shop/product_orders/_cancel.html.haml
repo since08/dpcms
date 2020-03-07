@@ -1,0 +1,4 @@
+= form_tag cancel_order_shop_product_order_path(resource), multipart: true do
+  = label_tag '不通过原因：'
+  = text_field_tag 'cancel_reason', nil, placeholder: '请输入不通过的理由！'
+  = submit_tag '提交'

@@ -1,0 +1,92 @@
+//= require_tree ./admin
+//= require simditor
+//= require simditor-markdown
+//= require simditor-video
+//= require jquery.Jcrop
+//= require fancybox
+//= require cropper
+//= require colorbox
+
+// SASS variable overrides must be declared before loading up Active Admin's styles.
+//
+// To view the variables that Active Admin provides, take a look at
+// `app/assets/stylesheets/active_admin/mixins/_variables.scss` in the
+// Active Admin source.
+//
+// For example, to change the sidebar width:
+// $sidebar-width: 242px;
+
+// Active Admin's got SASS!
+@import "active_admin/mixins";
+@import "active_admin/base";
+@import "app";
+@import "font-awesome";
+
+// Overriding any non-variable SASS must be done after the fact.
+// For example, to change the default status-tag color:
+.indexes {
+  float: none;
+}
+
+form.video input[type=text],
+form.video_type input[type=text],
+form.info_type input[type=text],
+form.info input[type=text]
+{
+  width: calc(30% - 22px);
+}
+
+.common_input_style_en{
+  margin-left: 30px;
+}
+
+#markdown_en{
+  display: none;
+}
+.hidden {
+  display: none;
+}
+
+input.editable_text_column {
+  background-color: #FBFF8C;
+  border: 1px none #FBFF8C;
+  box-shadow: 0 2px 19px #AAAAAA;
+  color: black;
+  display: none;
+  font-family: serif;
+  font-size: 1em;
+  font-style: italic;
+  height: 30px;
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+  width: 180px;
+  z-index: 9090;
+}
+
+a.action {
+  padding: 5px 12px;
+  vertical-align: middle;
+  border: 1px solid rgba(27,31,35,0.2);
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: white;
+  color: #5E6469;
+}
+
+a.x_mark{
+  font-weight: bold;
+  font-size: 13px;
+  margin-left: 5px;
+  text-decoration: none;
+  color: #5E6469;
+}
+
+.simditor-icon-dpLink:before {
+  content: '\L';
+}
+
+.active_admin video{
+  width: 40%;
+}

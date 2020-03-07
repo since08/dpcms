@@ -1,0 +1,7 @@
+- selected_tags = user.user_tags.pluck(:id)
+- UserTag.all.each do |tag|
+  %div
+    - if selected_tags.include?(tag.id)
+      %span{ data:{ uid: user.id, tid: tag.id, selected: 'true' }, class: 'color-blue' }= tag.name
+    - else
+      %span{ data:{ uid: user.id, tid: tag.id, selected: 'false' } }= tag.name

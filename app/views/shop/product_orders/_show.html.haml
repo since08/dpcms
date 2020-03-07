@@ -1,0 +1,70 @@
+%div.order-detail
+  %div.header
+    %div
+      %span 订单信息
+      %span{ class: 'count_down', data:{ status: resource.status, timestamp: resource.created_at.to_i } }
+        = "订单状态： #{I18n.t('order.' + resource.status)}"
+        %span.multi-status
+          - if resource.status.eql?('paid')
+            %span= link_to '发货', new_shop_product_order_product_shipment_path(resource), remote: true
+          - if resource.status.eql?('delivered')
+            %span= link_to '查看物流', shipping_detail_shop_product_order_path(resource), remote: true
+            %span= link_to '重新发货', edit_shop_product_order_product_shipment_path(resource, resource.product_shipment), remote: true
+          - if resource.status.eql?('completed')
+            %span= link_to '查看物流', shipping_detail_shop_product_order_path(resource), remote: true
+          - unless resource.status.eql?('canceled')
+            %span.cancel= link_to '取消', cancel_order_shop_product_order_path(resource), remote: true
+  %div.body
+    %div.content
+      %div
+        %span= "订单编号：#{resource.order_number}"
+        %span= "下单时间：#{resource.created_at}"
+      %div
+        %table
+          %tr
+            %td 序号
+            %td 商品名称
+            %td 商品图片
+            %td 类别
+            %td 价格
+            %td 实付价格
+            %td 数量
+          - resource.product_order_items.each_with_index do |item, index|
+          %tr
+          - variant = item.variant
+          - product = item.product
+            %td= index + 1
+            %td= product.title
+            %td
+              - img = variant&.image&.preview || product.preview_icon
+              = link_to image_tag(img), target: '_blank'
+            %td= product.category&.name
+            %td= item.original_price
+            %td= item.price
+            %td= item.number
+        %span= "总价：¥#{resource.total_price}，实付：¥#{resource.final_price} (快递：¥#{resource.shipping_price}, 扑客币抵扣：#{resource.deduction_price})"
+    - user = resource.user
+    %div.user_info
+      %div
+        %div 用户账户信息
+        %div
+          %span= "用户id：#{user.user_uuid}"
+          %span= "用户手机：#{user.mobile}"
+          %span= "用户邮箱：#{user.email}"
+      - address = resource.product_shipping_address
+      %div
+        %div 收货地址信息
+        %div
+          %span= "收货人：#{address&.name}"
+          %span= "联系方式：#{address&.mobile}"
+          %span= "收货地址：#{address&.full_address}"
+          - unless address.blank?
+            %span
+              - if address&.memo.blank?
+                = link_to '修改地址', change_address_shop_product_shipping_address_path(address), remote: true
+              - else
+                %span{style: "color: red"}
+                  = "备注：#{address.memo} (#{address.change_reason})"
+
+:javascript
+  window.onload = showCountDown(1800);

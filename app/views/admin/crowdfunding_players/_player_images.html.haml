@@ -1,0 +1,7 @@
+%label 牌手轮播图 (1~3张)
+%div.multi_images
+  - player.player_images.each do |item|
+    %span{style: 'margin-right: 15px'}
+      %span= image_tag(item.image, height: 120)
+      %span= link_to "删除", delete_image_admin_player_image_path(item), method: :post, remote: true, data: { confirm: '确定吗？' }
+  %span= link_to "新增", increase_image_admin_player_images_path + "?player_id=#{player.id}", remote: true

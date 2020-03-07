@@ -1,0 +1,17 @@
+= csrf_meta_tags
+= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+= image_tag(@player.avatar_url(:large), id: 'cropbox')
+
+%h4 Preview
+%div{style: "width:100px; height:100px; overflow:hidden"}
+  = image_tag @player.avatar.url(:large), id: 'preview'
+
+= form_for [:admin, @player] do |f|
+  - %w[x y w h].each do |attr|
+    = f.hidden_field "crop_#{attr}"
+    %br
+
+  .actions
+    = f.submit "确定剪裁"

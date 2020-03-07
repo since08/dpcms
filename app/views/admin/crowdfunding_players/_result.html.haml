@@ -1,0 +1,55 @@
+- cf_rank = resource&.crowdfunding_rank
+- awarded = cf_rank.present? ? cf_rank.awarded : true
+- finaled = cf_rank.present? ? cf_rank.finaled : false
+- earning = cf_rank.present? ? cf_rank.earning : 0
+- deduct_tax = cf_rank.present? ? cf_rank.deduct_tax : 0
+- platform_tax = cf_rank.present? ? cf_rank.platform_tax : 0
+- sale_amount = cf_rank.present? ? cf_rank.sale_amount : 0
+- total_amount = cf_rank.present? ? cf_rank.total_amount : 0
+- unit_amount = cf_rank.present? ? cf_rank.unit_amount : 0
+
+%div.cf_player_result
+  = form_tag result_admin_crowdfunding_crowdfunding_player_path(@crowdfunding, resource), method: :post, remote: true do
+    %div
+      %span #{resource.player&.name} (#{resource.player&.nick_name})
+    %div
+      %span 请输入名次：
+      %span= text_field_tag 'ranking', resource&.crowdfunding_rank&.ranking
+    %div
+      %span 是否进入钱圈：
+      %span= label_tag :awarded, '是'
+      %span= radio_button_tag :awarded, true, awarded
+      %span= label_tag :awarded, '否'
+      %span= radio_button_tag :awarded, false, !awarded
+    %div
+      %span 是否进入决赛：
+      %span= label_tag :finaled, '是'
+      %span= radio_button_tag :finaled, true, finaled
+      %span= label_tag :finaled, '否'
+      %span= radio_button_tag :finaled, false, !finaled
+    %div
+      %span 赢得的奖金(元)：
+      %span= text_field_tag 'earning', earning
+    %div
+      %span 扣除税收(元)：
+      %span.deduct_span= text_field_tag 'deduct_tax', deduct_tax
+    %div
+      %span 出让股权:
+      %span.sell_stock #{resource.sell_stock}%
+      %span{style: 'margin-left: 40px'} 股份划分:
+      %span.sell_number #{resource.stock_number}份
+    %div
+      %span 出让总金额(元):
+      %span.sale_amount.color-blue= sale_amount
+    %div
+      %span 平台手续费(%)：
+      %span= text_field_tag 'platform_tax', platform_tax
+    %div
+      %span 总金额(元):
+      %span.total_amount.color-blue= total_amount
+      %span{style: 'margin-left: 40px'} 单份金额(元):
+      %span.unit_amount.color-blue= unit_amount
+
+    = submit_tag '提交'
+
+

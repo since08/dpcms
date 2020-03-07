@@ -1,0 +1,26 @@
+/.bundle
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+.byebug_history
+/public/faces
+/public/uploads
+/public/assets
+/.DS_Store
+**/.DS_Store
+/.idea
+/db/schema.rb
+
+# dotenv
+.env.development
+.env.test
+.env.production
+.env
+
+#simplecov
+/coverage
+/bfg.jar
+.vscode

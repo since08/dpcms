@@ -1,0 +1,13 @@
+context.instance_eval do
+  id_column
+  column :invite_code_id, sortable: false
+  column :invite_code, sortable: false do |order|
+    order.invite_code&.code
+  end
+  column :name, sortable: false
+  column :email, sortable: false
+  column :ticket, sortable: false
+  column :price
+  column :created_at
+  actions
+end

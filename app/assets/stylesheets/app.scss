@@ -1,0 +1,54 @@
+.cms_form_dialog {
+  position: fixed;
+  height: auto;
+  width: 40%;
+  top: 20%;
+  left: 30%;
+  display: block;
+  z-index: 1002;
+}
+
+.ui-dialog {
+  .ui-dialog-titlebar {
+    height: 30px;
+    line-height: 30px;
+
+    button { float: right; }
+
+    span.ui-button-icon { font-size: 1em; }
+  }
+
+  form label {
+    margin-right: 0px;
+  }
+
+  fieldset.inputs {
+    box-shadow: none;
+  }
+
+  tbody tr:hover {
+    background-color: #b3b3b3;
+    cursor:pointer
+  }
+}
+
+.ui-dialog {
+  position: absolute;
+
+  .embedded_string input[type=text] {
+    margin-right: 5px;
+    width: calc(37% - 12px);
+  }
+}
+
+.embedded_string input[type=text] {
+  margin-right: 10px;
+  width: calc(37% - 22px);
+}
+
+.sources {
+  tbody tr:hover {
+    background-color: #b3b3b3;
+    cursor:pointer
+  }
+}

@@ -1,0 +1,4 @@
+%div#import_blinds
+  = form_tag import_admin_race_race_blinds_path(@race), multipart: true do
+    %li= file_field_tag :file
+    = submit_tag '提交'

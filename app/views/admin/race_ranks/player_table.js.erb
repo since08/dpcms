@@ -1,0 +1,11 @@
+$('#btn_search_player').parents(".ui-dialog").remove();
+var html = "<%= j(render('player_table', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '50%',
+    title: '搜索牌手',
+    position: { my: 'top', at: 'top+250' }
+});
+SearchPlayer.bindEents();
+$('#btn_search_player').click();
+$('#input_search_player').focus();

@@ -1,0 +1,14 @@
+%div#change_group
+  = form_tag change_group_admin_video_path(@video), multipart: true, remote: true do
+    .old_group
+      %span 当前组别：
+      %span #{@video&.video_group&.name}
+    %br
+    .new_group
+      - groups = VideoGroup.where.not(id: @video&.video_group&.id).order(id: :desc).collect do |video_group|
+        - [video_group.name, video_group.id]
+      %span 新的组别：
+      %span
+        = select_tag(:group_id, options_for_select(groups))
+    %br
+    = submit_tag '保存', data: { confirm:'确定更改吗？' }

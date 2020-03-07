@@ -1,0 +1,5 @@
+%span 标签:
+- resource.user_tags.each do |tag|
+  %span.color-blue #{tag.name}
+%span
+  = link_to '修改️', add_tag_admin_user_path(resource), remote: true

@@ -1,0 +1,38 @@
+context.instance_eval do
+  attributes_table do
+    row(:player_id)
+    row(:avatar) do |player|
+      if player.avatar_thumb.present?
+        link_to image_tag(player.avatar_thumb, height: 100), player.avatar_thumb, target: '_blank'
+      end
+    end
+    row(:name)
+    row(:country)
+    row(:dpi_total_earning)
+    row(:dpi_total_score)
+    row(:follows_count)
+    row(:memo)
+  end
+
+  panel '战绩列表'do
+    table_for player.race_ranks.includes(:race) do
+      column(I18n.t('activerecord.attributes.race.name')) { |rank| link_to_race rank.race }
+      column :ranking
+      column(I18n.t('activerecord.attributes.race.ticket_price')) { |rank| rank.race.ticket_price }
+      column(I18n.t('activerecord.attributes.race.participants')) { |rank| rank.race.participants }
+      column :earning
+      column :score
+      column(I18n.t('race.period')) { |rank| race_period(rank.race) }
+      column(I18n.t('activerecord.attributes.race.location')) { |rank| rank.race.location }
+      column('') do |rank|
+        link_to(I18n.t('active_admin.edit'),
+                edit_admin_race_race_rank_path(rank.race, rank),
+                remote: true) <<' | ' <<
+        link_to(I18n.t('active_admin.delete'),
+                admin_race_race_rank_path(rank.race, rank),
+                data: { confirm: I18n.t('active_admin.delete_confirmation') },
+                method: :delete)
+      end
+    end
+  end
+end

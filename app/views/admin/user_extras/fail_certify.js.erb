@@ -1,0 +1,7 @@
+$('#fail_certify').parents(".ui-dialog").remove();
+var html = "<%= j(render('fail_certify', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '40%',
+    title: '审核失败'
+});

@@ -1,0 +1,56 @@
+- @info.info_en || @info.build_info_en
+
+- selected = InfoType.info_type_array.collect do |val, key|
+  - break [val, key] if params[:id].present? && key.eql?(Info.find(params[:id]).info_type.try(:id).to_i)
+  - break [val, key] if params[:type_id].present? && key.eql?(params[:type_id].to_i)
+
+= semantic_form_for [:admin, @info] do |f|
+  = f.inputs name: '资讯管理' do
+    = f.input :image, as: :file, hint: f.object.image_thumb.present? ? image_tag(f.object.image_thumb) : nil
+    %li
+      %div
+        %label 资讯名称
+        %span 中文：
+        = f.text_field :title
+        %span{class: 'common_input_style_en'} 英文：
+        = f.semantic_fields_for :info_en do |en|
+          = en.text_field :title
+    = f.input :date
+    = f.input :race_tag_id, as: :select, collection: RaceTag.all
+    = f.input :source_type, as: :select, collection: SOURCE_TYPE
+    %li
+      %div
+        %label 来源内容
+        %span 中文：
+        = f.text_field :source
+        %span{class: 'common_input_style_en'} 英文：
+        = f.semantic_fields_for :info_en do |en|
+          = en.text_field :source
+    = f.input :info_type_id, as: :select, collection: options_for_select(InfoType.info_type_array, selected)
+    %li
+      %div
+        %label 是否显示
+        %span 中文：
+        = f.check_box :is_show
+        %span{class: 'common_input_style_en'} 英文：
+        = f.semantic_fields_for :info_en do |en|
+          = en.check_box :is_show
+    = f.input :published
+    = multilingual_editor_switch
+    %li#markdown_cn
+      ~ f.text_area :description
+    %li#markdown_en
+      = f.semantic_fields_for :info_en do |en|
+        ~ en.text_area :description
+    = f.actions
+
+= render 'admin/common/dp_sources_with_select'
+
+:javascript
+  $(function() {
+    var options = { is_html: true }
+    dpEditor.call($('#info_info_en_attributes_description'), $('form.info'), options);
+    dpEditor.call($('#info_description'), $('form.info'), options);
+    HomepageEvent.bindFormEvents();
+  });
+

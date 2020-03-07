@@ -1,0 +1,5 @@
+var cf_player_images = $('.cf_player_images_')
+cf_player_images.html("")
+var html = "<%= j(render('admin/crowdfunding_players/player_images', player: @player, remote: true)) %>";
+cf_player_images.append(html)
+$(".increase_image").closest(".ui-dialog").find('.ui-dialog-titlebar-close').click();

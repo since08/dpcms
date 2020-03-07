@@ -1,0 +1,36 @@
+%div.sources
+  %div.races.hidden
+    %form{class: 'search_races_form left', action: admin_races_path(format: :json, per_page: 10), data: { remote: true }}
+      %input{name: 'q[name_contains]', type: 'search', id: 'input_search_races'}
+      %input{name: 'q[published_eq]', type: 'hidden', value: 'true'}
+      %input{name: 'submit', type: 'submit', value: '搜索', id: 'btn_search_races'}
+    %table
+      %thead
+        %tr
+          %th 赛事ID
+          %th 赛事标题
+      %tbody
+
+  %div.infos.hidden
+    %form{class: 'search_infos_form left', action: admin_infos_path(format: :json, per_page: 10), data: { remote: true }}
+      %input{name: 'q[title_contains]', type: 'search', id: 'input_search_infos'}
+      %input{name: 'q[published_eq]', type: 'hidden', value: 'true'}
+      %input{name: 'submit', type: 'submit', value: '搜索', id: 'btn_search_infos'}
+    %table
+      %thead
+        %tr
+          %th 资讯ID
+          %th 资讯标题
+      %tbody
+
+  %div.videos.hidden
+    %form{class: 'search_videos_form left', action: admin_videos_path(format: :json, per_page: 10), data: { remote: true }}
+      %input{name: 'q[name_contains]', type: 'search', id: 'input_search_videos'}
+      %input{name: 'q[published_eq]', type: 'hidden', value: 'true'}
+      %input{name: 'submit', type: 'submit', value: '搜索', id: 'btn_search_videos'}
+    %table
+      %thead
+        %tr
+          %th 视频ID
+          %th 视频标题
+      %tbody

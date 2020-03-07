@@ -1,0 +1,10 @@
+context.instance_eval do
+  column(:logo, sortable: false) { |race| logo_link_to_show(race) }
+  column(:name, sortable: false) { |race| link_to race.name, admin_race_path(race)}
+  column(I18n.t('race.period'), sortable: :begin_date) { |race| race_period(race) }
+  column(I18n.t('race.surplus_ticket'), sortable: false) { |race| surplus_ticket(race.ticket_info) }
+  column(:ticket_status, sortable: false) { |race| select_to_ticket_status(race) }
+  actions(defaults: false) { |race| ticket_table_actions(self, race) }
+end
+
+

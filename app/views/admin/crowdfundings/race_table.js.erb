@@ -1,0 +1,11 @@
+$('.cf_race_table').parents(".ui-dialog").remove();
+var html = "<%= j(render('race_table', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '65%',
+    title: '搜索赛事',
+    position: { my: 'top', at: 'top+250' }
+});
+SearchUser.bindEents();
+$('#btn_search_user').click();
+$('#input_search_user').focus();

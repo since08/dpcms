@@ -1,0 +1,11 @@
+$('.show_user_dynamics').parents(".ui-dialog").remove();
+
+var html = "<%= j(render('show_dynamics', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '45%',
+    title: '用户动态',
+    position: { my: 'left', at: 'left+680 top+293' }
+});
+
+

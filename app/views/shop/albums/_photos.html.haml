@@ -1,0 +1,14 @@
+%div.album_photos
+  - if @photos.blank?
+    %div{style: 'text-align: center;width: 100%; padding: 20px'}
+      %h3 该相册没有任何图片
+  - @photos.each do |photo|
+    %div.photo
+      %div=image_tag(photo.image_url, height: 130, width: 150)
+      %div.photo_actions
+        %span
+          = link_to '删除', shop_album_photo_path(photo),
+                               method: 'delete', class: 'action', remote: 'true',
+                               data: { confirm: '确定删除吗？' }
+%div.index_foot
+  = paginate(@photos, remote: true)

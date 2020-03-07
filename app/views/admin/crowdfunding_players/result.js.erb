@@ -1,0 +1,56 @@
+$('.cf_player_result').parents(".ui-dialog").remove();
+var html = "<%= j(render('result', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '30%',
+    title: '输入结果',
+    position: { my: 'top', at: 'top+100' }
+});
+
+$('.cf_player_result input#earning').blur(function() {
+    cal_sale_amount();
+});
+
+$('.cf_player_result input#deduct_tax').blur(function() {
+    cal_sale_amount();
+});
+
+$('.cf_player_result input#platform_tax').blur(function() {
+    cal_sale_amount();
+});
+
+
+function cal_sale_amount() {
+    var earning = parseInt($('.cf_player_result input#earning').val());
+    var deduct_tax = parseFloat($('.cf_player_result input#deduct_tax').val());
+    var sell_stock = parseFloat($('.cf_player_result .sell_stock').text()) / 100;
+    var sell_number = parseFloat($('.cf_player_result .sell_number').text());
+    console.log(deduct_tax, earning, sell_stock);
+    if (deduct_tax > earning) {
+        console.log('税收不能大于赢得的奖金');
+        return false;
+    }
+
+    var sale_amount = (earning - deduct_tax) * sell_stock;
+    $('.cf_player_result .sale_amount').text(toDecimal(sale_amount));
+
+    var platform_tax = parseFloat($('.cf_player_result input#platform_tax').val()) / 100;
+    if (platform_tax < 0 || platform_tax > 1) {
+        console.log('平台税收不能小于0 或 大于100%');
+        return;
+    }
+    console.log(sale_amount, platform_tax);
+    var total_amount = sale_amount * (1 - platform_tax)
+    var unit_amount = total_amount / sell_number
+    $('.cf_player_result .total_amount').text(toDecimal(total_amount));
+    $('.cf_player_result .unit_amount').text(toDecimal(unit_amount));
+}
+
+function toDecimal(x) {
+    var f = parseFloat(x);
+    if (isNaN(f)) {
+        return;
+    }
+    f = Math.round(x*100)/100;
+    return f;
+}

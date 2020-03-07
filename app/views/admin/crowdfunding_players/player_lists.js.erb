@@ -1,0 +1,11 @@
+var cf_table = $('.select_cf_player .cf_player_body');
+cf_table.html('');
+
+var html = "<%= j(render('player_content', remote: true)) %>";
+cf_table.append(html);
+
+$('.cf_search_player tbody .base-info').bind('click', function(){
+    var id = $(this).closest('tr').data('id');
+    var cid = $(this).closest('tr').data('cid');
+    window.location.href = "/admin/crowdfundings/"+cid+"/crowdfunding_players/new?player_id="+id
+});

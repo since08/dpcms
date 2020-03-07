@@ -1,0 +1,39 @@
+- resource.ticket_info || resource.build_ticket_info
+- resource.ticket_en || resource.build_ticket_en
+= semantic_form_for [:admin, @race, resource] do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :race, collection: [[@race.name, @race.id]], prompt: true
+    = f.input :title, as: :embedded_string, embedded_html: :with_en
+    = f.input :price
+    = f.input :original_price
+    = f.input :level
+    = f.input :role_group, collection: TRANS_ROLE_GROUPS, prompt: true
+    = f.input :ticket_class, collection: TRANS_TICKET_CLASSES, prompt: true
+    = f.input :logo, as: :attachment, required: true,
+                     hint: '图片最大为 2MB',
+                     image: proc { |o| o.preview_logo }
+    = f.semantic_fields_for :ticket_en do |form|
+      = form.input :logo, as: :attachment, required: true,
+                          image: proc { |o| o.preview_logo }
+    = f.input :banner, as: :attachment, required: true,
+                       hint: '横图尺寸为：750x440',
+                       image: proc { |o| o.preview_banner }
+    = f.semantic_fields_for :ticket_en do |form|
+      = form.input :banner, as: :attachment, required: true,
+                            image: proc { |o| o.preview_banner }
+    = multilingual_editor_switch
+    %li#markdown_cn
+      = f.text_area :description
+    %li#markdown_en
+      = f.semantic_fields_for :ticket_en do |form|
+        ~ form.text_area :description
+    = f.semantic_fields_for :ticket_info do |info_form|
+      = info_form.hidden_field :e_ticket_number
+  = f.actions
+:javascript
+  $(function() {
+    dpEditor.call($('#ticket_description'), $('form.ticket'));
+     dpEditor.call($('#ticket_ticket_en_attributes_description'), $('form.ticket'),
+         { placeholder: 'Here to enter text...' });
+  });

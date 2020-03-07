@@ -1,0 +1,75 @@
+- order = @purchase_order
+
+.order_address
+  %h3.title 收货信息
+  - if %w(unpaid paid).include?(order.status)
+    %button.update_order_address 修改
+  %hr
+
+  .edit_order
+    - if order.ticket_type.eql?('e_ticket')
+      .ticket_order
+        %span 电子票
+        %span 收货电子邮箱：
+        %span= order.email
+      .ticket_order_edit
+        = form_tag(change_e_ticket_address_admin_purchase_order_path(order.id), method: 'post', remote:  true) do
+          %label{ for: 'email' } 新的邮箱：
+          = text_field_tag(:email, order.email)
+          = submit_tag '更新', data: {confirm: '确定更新吗？'}
+          %button.order_ticket_button_cancel 取消
+    - else
+      .ticket_order
+        %span 实体票
+        %span 收货人：#{ order.consignee }
+        %span 联系方式：#{ order.mobile }
+        %span 收货地址：#{ order.address }
+      .ticket_order_edit
+        = form_tag(change_entity_ticket_address_admin_purchase_order_path(@purchase_order.id), method: 'post', remote: true) do
+          %fieldset
+            %legend 实体票修改：
+            %label{ for: 'consignee' } 收货人：
+            &nbsp;&nbsp;&nbsp;
+            %span= text_field_tag(:consignee, order.consignee)
+            %br
+            %label{ for: 'mobile' } 联系方式：
+            %span= text_field_tag(:mobile, order.mobile)
+            %br
+            %label{ for: 'address' } 收货地址：
+            %span= text_field_tag(:address, order.address)
+            = submit_tag '更新', data: { confirm: '确定更新吗？' }
+            %button.order_ticket_button_cancel 取消
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

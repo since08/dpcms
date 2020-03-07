@@ -1,0 +1,34 @@
+- resource.race_desc || resource.build_race_desc
+- resource.race_en   || resource.build_race_en
+- resource.race_desc_en || resource.build_race_desc_en
+- url = resource.persisted? ? resource_path(resource) : collection_path
+= semantic_form_for resource, url: url do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :parent, collection: [[@race.name, @race.id]], prompt: true
+    = f.input :name, as: :embedded_string, embedded_html: :with_en
+    = f.input :logo, as: :file, hint: f.object.logo.present? ? image_tag(f.object.preview_logo) : nil
+    = f.input :ticket_price, as: :embedded_string, embedded_html: :with_en
+    = f.input :blind, as: :embedded_string, embedded_html: :with_en
+    = f.input :prize, as: :embedded_string, embedded_html: :with_en
+    = f.input :location, as: :embedded_string, embedded_html: :with_en
+    = f.input :participants
+    = f.input :begin_date
+    = f.input :end_date
+    = f.input :schedule_begin_time
+    = f.input :roy
+    = f.input :ticket_sellable
+    = multilingual_editor_switch
+    %li#markdown_cn
+      = f.semantic_fields_for :race_desc do |form|
+        ~ form.text_area :schedules
+    %li#markdown_en
+      = f.semantic_fields_for :race_desc_en do |form|
+        ~ form.text_area :schedules
+  = f.actions
+:javascript
+    $(function() {
+        dpEditor.call($('#race_race_desc_attributes_schedules'), $('form.race'));
+        dpEditor.call($('#race_race_desc_en_attributes_schedules'), $('form.race'),
+         { placeholder: 'Here to enter text...' });
+    });

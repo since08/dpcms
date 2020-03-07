@@ -1,0 +1,18 @@
+resource.race_desc || resource.build_race_desc
+resource.race_en   || resource.build_race_en
+f.semantic_errors *f.object.errors.keys
+f.inputs do
+  f.input :parent, collection: [[race.name, race.id]], prompt: true
+  f.input :name, as: :embedded_string, embedded_html: :with_en
+  f.input :logo, as: :file, hint: f.object.logo.present? ? image_tag(f.object.preview_logo) : nil
+  f.input :ticket_price, as: :embedded_string, embedded_html: :with_en
+  f.input :blind, as: :embedded_string, embedded_html: :with_en
+  f.input :prize, as: :embedded_string, embedded_html: :with_en
+  f.input :location, as: :embedded_string, embedded_html: :with_en
+  f.input :participants
+  f.input :begin_date
+  f.input :end_date
+  f.input :roy
+  f.input :ticket_sellable
+end
+f.actions

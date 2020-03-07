@@ -1,0 +1,52 @@
+%div.show_user_dynamics
+  %div.person_info
+    %div.u-left
+      %span
+        = avatar(resource.avatar_path, size: 60)
+    %div.u-right
+      %div
+        %span.nick_name #{resource.nick_name}
+      %div
+        %span #{resource.signature}
+  - @return_lists.each do |item|
+    - date = item[0]
+    - lists = item[1]
+
+    %div.my_dynamics
+      %div.d-left
+        - if date.eql?(Date.today.strftime('%Y%m%d'))
+          %div{style: 'font-size: 18px'} 今天
+        - elsif date.eql?(Date.yesterday.strftime('%Y%m%d'))
+          %div{style: 'font-size: 18px'} 昨天
+        - else
+          %div{style: 'font-size: 15px'} #{date[4,2]}.#{date[6,2]}
+      %div.d-right
+        - lists.each do |data|
+          - typological = data.unscoped_typological
+          - topic = data.unscoped_typological_topic
+          - method = data.typological_type.eql?('Comment') ? '评论' : data.typological_type.eql?('Reply') ? '回复' : '赞'
+          %div
+            在扑客APP
+            %span.color-blue #{method}
+            %span 了一个话题
+          %div
+            %div.image
+              - if typological.topic_type.eql?('UserTopic')
+                = avatar(topic.user.avatar_path)
+              - elsif topic&.image_thumb.present?
+                = image_tag(topic.image_thumb, height: 50, class: 'default_use_image')
+              - else
+                %div{ class: 'default_use_image' } 图片
+            %div.content
+              %div
+                %span.title_color
+                  - topic_type_str = typological.topic_type.underscore
+                  - url = send("admin_#{topic_type_str}_url", typological.topic) + '#comment'
+                  = link_to typological.topic.title, url, target: "_blank", rel: "nofollow"
+              - if data.typological_type.eql?('TopicLike')
+                %div
+                  %span{ style: 'font-style: italic' }= truncate(topic.description, length: 63)
+              - else
+                %div= truncate(typological.body, length: 63)
+  %div.index_foot
+    = paginate(@dynamics, remote: true)

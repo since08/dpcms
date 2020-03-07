@@ -1,0 +1,26 @@
+%div.cf_search_content
+  %table.search_races
+    %thead
+      %tr
+        %th ID
+        %th 名称
+        %th 地点
+        %th 操作
+    %tbody
+      - if @races.length.zero?
+        %tr
+          %td 没有相关数据
+      - else
+        - @races.each do |item|
+          %tr{ 'data-id': item.id, 'data-name': item.name }
+            %td.base-info= item.id
+            %td.base-info= item.name
+            %td.base-info= item.location
+            %td
+              - if item.main? && item.sub_races.present?
+                %span
+                  = link_to '查看边赛', search_sub_races_admin_crowdfundings_path + "?id=#{item.id}", method: :get, remote: true
+
+  %div.index_foot
+    = paginate(@races, remote: true)
+

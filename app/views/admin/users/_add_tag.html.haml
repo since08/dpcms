@@ -1,0 +1,8 @@
+%div.add_user_tag_list
+  %div.tag_option
+    %div.tag_list
+      = render 'tag_list', user: resource
+  %div.add_tag_option
+    = form_tag create_user_tag_admin_user_path(resource), method: 'post', remote: 'true' do
+      = text_field_tag :name, nil, required: true
+      = submit_tag '新建标签'

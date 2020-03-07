@@ -1,0 +1,63 @@
+context.instance_eval do
+  column :id
+  column :name, sortable: false
+  column :title_desc, sortable: false
+  column '视频播放', :video_link do |video|
+    video_tag(video.video_link, controls: true, preload: 'none', height: 200) if video.video_link.present?
+  end
+  column :video_type_id, sortable: false
+  column :race_tag_id, sortable: false
+  column :is_main
+  column :video_group do |resource|
+    resource.video_group
+  end
+  column :is_show, sortable: false do |video|
+    video&.is_show ? '√' : '×'
+  end
+  column :en_is_show, sortable: false do |video|
+    video.video_en&.is_show ? '√' : '×'
+  end
+  column :topic_comments do |video|
+    link_to video.total_comments, admin_video_path(video) + '#comment'
+  end
+  column :page_views, sortable: 'video_counters.page_views' do |video|
+    video.counter.page_views
+  end
+  column :view_increment, sortable: 'video_counters.view_increment' do |video|
+    best_in_place video.counter, :view_increment, as: 'input', place_holder: '点我添加', url: [:admin, video.counter]
+  end
+  column :top
+  column :published
+  actions name: '操作', class: 'video_actions' do |resource|
+    if resource.published
+      msg = resource.top ? '取消发布之前会先取消置顶该视频，继续吗？' : '确定取消吗？'
+      item '取消发布', unpublish_admin_video_path(resource), data: { confirm: msg }, method: :post
+    else
+      item '发布', publish_admin_video_path(resource), data: { confirm: '确定发布吗？' }, method: :post
+    end
+
+    if resource.top
+      item '取消置顶', untop_admin_video_path(resource), data: { confirm: '确定取消置顶吗？' }, method: :post
+    else
+      resource_type = resource.video_type || resource.build_video_type
+      message = if resource_type.videos.published.topped.present?
+                  resource.published ? '置顶之前会先取消该类别下其它视频置顶，确定吗？' : '置顶之前会先取消该类别下其它视频置顶、并发布该视频，继续吗？'
+                else
+                  resource.published ? '确定置顶吗？' : '置顶之前会先发布该视频，继续吗？'
+                end
+      item '置顶', top_admin_video_path(resource), data: { confirm: message }, method: :post
+    end
+    if resource.video_group.present?
+      item '同类视频', admin_video_group_videos_path(resource.video_group_id)
+    end
+    if resource.video_group_id.present?
+      item '修改组别名称', edit_admin_video_group_path(resource.video_group_id), remote: true
+    end
+    unless resource.is_main
+      item '设为主视频', main_video_admin_video_path(resource), data: { confirm: '该类别下已有的主视频将会被取消' }, method: :post
+    end
+    item '更换组别', change_group_admin_video_path(resource), remote: true
+    item '分享', resource.share_link, target: '_blank', data: { confirm: "链接地址: #{resource.share_link}" }
+    item '浏览量', views_admin_video_path(resource), remote: true
+  end
+end

@@ -1,0 +1,46 @@
+.cf_poker_coin {
+  padding: 10px 17px;
+  .top {
+    display: flex;
+    display: -webkit-flex;
+
+    >span {
+      flex: 1;
+      div {
+        padding: 5px;
+      }
+      .indent {
+        margin-left: 23px;
+      }
+    }
+
+    table {
+      border: 1px solid silver;
+      border-collapse:collapse;
+    }
+
+    table, td, th {
+      border: 1px solid black;
+    }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.poker_coin {
+  .number-input {
+    width: 100px;
+  }
+
+  form > div {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .info > span {
+    margin-right: 40px;
+  }
+}

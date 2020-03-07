@@ -1,0 +1,55 @@
+- @video.video_en || @video.build_video_en
+
+- selected = VideoType.video_type_array.collect do |val, key|
+  - break [val, key] if params[:id].present? && key.eql?(Video.find(params[:id]).video_type.try(:id).to_i)
+  - break [val, key] if params[:type_id].present? && key.eql?(params[:type_id].to_i)
+  - break [val, key] if params[:video_group_id].present? && VideoGroup.find(params[:video_group_id])&.videos.first.video_type_id.eql?(key)
+
+= semantic_form_for [:admin, @video] do |f|
+  = f.inputs name: '视频管理' do
+    %li
+      %div
+        %label 视频名称
+        %span 中文：
+        = f.text_field :name
+        %span{class: 'common_input_style_en'} 英文：
+        = f.semantic_fields_for :video_en do |en|
+          = en.text_field :name
+    %li
+      %div
+        %label 标题描述
+        %span 中文：
+        = f.text_field :title_desc
+        %span{class: 'common_input_style_en'} 英文：
+        = f.semantic_fields_for :video_en do |en|
+          = en.text_field :title_desc
+    = f.input :video_type_id, as: :select, collection: options_for_select(VideoType.video_type_array, selected)
+    = f.input :race_tag_id, as: :select, collection: RaceTag.all
+    = f.input :video_group_id, as: :hidden
+    = f.input :cover_link, as: :file, hint: f.object.image_thumb.present? ? image_tag(f.object.image_thumb, height: 60) : nil
+    = f.input :video_link
+    = f.input :video_duration
+    %li
+      %div
+        %label 是否显示
+        %span 中文：
+        = f.check_box :is_show
+        %span{class: 'common_input_style_en'} 英文：
+        = f.semantic_fields_for :video_en do |en|
+          = en.check_box :is_show
+    = f.input :published
+    = multilingual_editor_switch
+    %li#markdown_cn
+      ~ f.text_area :description
+    %li#markdown_en
+      = f.semantic_fields_for :video_en do |en|
+        ~ en.text_area :description
+    = f.actions
+
+= render 'admin/common/dp_sources_with_select'
+:javascript
+  $(function() {
+        dpEditor.call($('#video_description'), $('form.video'));
+        dpEditor.call($('#video_video_en_attributes_description'), $('form.video'));
+        HomepageEvent.bindFormEvents();
+  });

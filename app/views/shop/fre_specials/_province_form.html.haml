@@ -1,0 +1,14 @@
+- selected_provinces = resource.fre_special_provinces.pluck(:province_id)
+
+%div{class: "fre_province_select"}
+  - Province.all.each_with_index do |province, index|
+    - mod = index % 8
+    - if mod.eql?(0)
+      %div
+    - if selected_provinces.include?(index)
+      %span{ data:{ province_id: index, selected: 'true' }, class: 'blue' }= province.name
+    - else
+      %span{ data:{ province_id: index, selected: 'false' } }= province.name
+
+  %div
+    %button{ data: {special: resource.id} } 保存

@@ -1,0 +1,61 @@
+- @product.master   || @product.build_master
+= semantic_form_for [:shop, @product] do |f|
+  = f.inputs do
+    %li#search_player_input
+      %label 所属分类
+      - category_parent = @product.category&.parent
+      - children_conllection = category_parent && category_parent.children.collect { |c| [ c.name, c.id ] }
+      = f.select 'root_category', roots_collection, prompt: '主分类',
+                                  selected: category_parent&.id
+      = f.select 'category_id', children_conllection || [], prompt: '子分类'
+      - @product.errors[:category].each do |err|
+        %p.inline-errors=err
+    = f.input :title
+    = f.input :published
+    = f.input :recommended
+    = f.input :freight_free
+    = f.input :seven_days_return
+    = f.input :freight, prompt: true
+    = f.input :product_type, as: :select, collection: TRANS_PRODUCT_TYPES, prompt: true
+    %li
+      %label 图片剪裁
+      %div
+        = image_tag('', id: 'cropbox')
+    %li
+      %label &nbsp;
+      %div
+        %span= link_to '从相册中选择', shop_album_photos_path, class: 'action', remote: true
+    = hidden_field_tag :remote_img_url
+    = f.input :icon, as: :attachment,
+                        hint: '图片最大为 2MB',
+                        image: proc { |o| o.preview_icon }
+    - %w[x y w h].each do |attr|
+      = f.hidden_field "crop_#{attr}", id: "crop_#{attr}"
+    = f.input :description
+    = f.semantic_fields_for :master do |form|
+      = form.input :original_price
+      = form.input :price
+      = form.input :stock
+      = form.input :weight
+      = form.input :volume
+      = form.input :origin_point
+    = f.action :submit, button_html: { data: { disable_with: '请稍等...' } }
+
+:javascript
+    $(function() {
+        dpEditor.call($('#product_description'), $('form.product'));
+        $('#product_root_category').change(function() {
+          $.ajax({
+            url: '/shop/categories/' + $(this).val() + '/children.json'
+          }).done(function(result){
+            var options = '';
+            result.forEach(function(category,index){
+              console.log(index + ':' + category.name);
+              options +='<option value="'+ category.id +'">' + category.name + '</option>'
+            });
+            $('#product_category_id').html(options);
+          });
+        });
+        var cropper_options = { aspectRatio: 184/178 }
+        DpCropper.call($('#product_icon'), $('#cropbox'), cropper_options);
+    });

@@ -1,0 +1,60 @@
+%div.product-order
+  - @product_orders.each do |order|
+    %div.order_detail
+      %div.order-header
+        %div
+          %span id：
+          %span= order.id
+        %div
+          %span 订单编号：
+          %span= order.order_number
+        %div
+          %span 下单时间：
+          %span= order.created_at
+        %div{ class: 'last-column' }
+          %span= "合计：¥#{order.total_price}，实付：¥#{order.final_price} (含运费：¥#{order.shipping_price}, 扑客币抵扣：#{order.deduction_price})"
+      %div.order-table
+        - items = order&.product_order_items
+        %div.order-left
+          %div.tr
+            %div 商品名称
+            %div 所属分类
+            %div 商品图片
+            %div 商品价格
+            %div 购买数量
+            %div &nbsp;
+          - items.each do |item|
+            - variant = item.variant
+            - product = item.product
+            %div.tr
+              %div= product&.title
+              %div= product&.category&.name
+              - img = variant&.image&.preview || product&.preview_icon
+              - if img.present?
+                %div
+                  = link_to image_tag(img), target: '_blank'
+              %div
+                <s class="red">#{item.original_price}</s> #{item.price}
+              %div= item.number
+              %div
+                <b>#{I18n.t("refund.#{item.refund_status}")}</b>
+        %div.order-right
+          %div.tr
+            %div
+              %span{class: 'count_down', data:{ status: order.status, timestamp: order.created_at.to_i }}
+                = I18n.t("order.#{order.status}")
+          %div.tr
+            %div= link_to '查看', shop_product_order_path(order)
+            - unless order.status.eql?('canceled')
+              %div= link_to '取消', cancel_order_shop_product_order_path(order), remote: true
+
+:javascript
+  window.onload = showCountDown(1800);
+
+
+
+
+
+
+
+

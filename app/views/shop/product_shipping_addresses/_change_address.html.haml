@@ -1,0 +1,9 @@
+= form_tag change_address_shop_product_shipping_address_path(resource), multipart: true, class: 'change_product_address' do
+  %div
+    = label_tag 'change_reason', '修改原因：'
+    = text_field_tag 'change_reason'
+  %div
+    = label_tag 'memo', '备注信息：'
+    = text_field_tag 'memo'
+  %div
+    = submit_tag '提交'

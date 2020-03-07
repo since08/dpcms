@@ -1,0 +1,12 @@
+$('.album_photo_index').parents(".ui-dialog").remove();
+var html = "<%= j(render('index', remote: true)) %>";
+$(html).dialog({
+  modal: true,
+  width: '90%',
+  position: { my: 'top', at: 'top+250' },
+  padding: '20px'
+});
+$('a.fancybox').fancybox();
+albumPhotos.bind_changed_get_photos($('#album'));
+albumPhotos.click_img_to_cropbox($('.photo_with_pagination'), $('#cropbox'), { aspectRatio: 184/178 });
+$('#album').trigger('change');

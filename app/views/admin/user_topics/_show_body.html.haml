@@ -1,0 +1,9 @@
+- if resource.long?
+  %h2= resource.title
+  %div= sanitize(resource.body)
+- else
+  - if resource.body.present?
+    %div= sanitize(resource.body)
+  - resource.topic_images.each_with_index do |image, index|
+    = link_to image.image_path, class: "group group#{resource.id}", title: "Pic #{index + 1}", 'data-group': resource.id do
+      = image_tag(image.image_path, class: 'nine-grid')

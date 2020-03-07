@@ -1,0 +1,5 @@
+= semantic_form_for [:admin, @category] do |f|
+  = f.inputs style: 'margin-bottom: -10px;' do
+    = f.input :race, collection: [[@race.name, @race.id]], prompt: true
+    = f.input :blind_type, collection: TRANS_BLIND_TYPES, prompt: true
+    = f.input :level

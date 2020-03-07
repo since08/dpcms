@@ -1,0 +1,79 @@
+%div.user_profile_container
+  %div.container
+    %div.user_info
+      %div.basic
+        %div.u-left
+          %span
+            = avatar(resource.avatar_path, size: 70)
+        %div.u-right
+          %div
+            %span 昵称：
+            %span #{resource.nick_name}
+          %div
+            %span 扑客ID：
+            %span #{resource.user_name}
+          %div
+            %span 备注：
+            %span
+              = best_in_place resource, 'mark', as: 'input', place_holder: '添加', url: [:admin, resource]
+          %div.dynamic_tags
+            = render 'dynamic_tags'
+      %div.dynamic
+        %span
+          = link_to '查看动态', dynamics_admin_user_path(resource), remote: true
+      %div.dynamic
+        %span
+          关注
+          %span
+            = link_to resource.counter.following_count, followings_admin_user_path(resource)
+        %span
+          | 粉丝
+          %span
+            = link_to resource.counter.follower_count, followers_admin_user_path(resource)
+      %div
+        %span
+          长帖
+          %span
+            = link_to resource.counter.long_topic_count, admin_user_topics_path(q: { user_id_eq: resource.id, body_type_eq: 'long' })
+        %span
+          | 说说
+          %span
+            = link_to resource.counter.short_topic_count, admin_user_topics_path(q: { user_id_eq: resource.id, body_type_eq: 'short' })
+        %span
+          | 精华
+          %span
+            = link_to resource.counter.great_topic_count, admin_user_topics_path(q: { user_id_eq: resource.id, recommended_eq: 'true' })
+      %div.bottom
+        %span
+          评论
+          %span.color-blue #{ resource.comments.count }
+        %span
+          | 回复
+          %span.color-blue #{ resource.replies.count }
+        %span
+          | 精选评论
+          %span.color-blue #{ resource.comments.recommend_comments.count }
+
+    %div.register_date
+      %div
+        %span 于#{resource.reg_date&.strftime('%Y-%m-%d')}注册
+      %div
+        - if resource.silenced_and_till?
+          %span.color-red 用户已禁言，解禁时间：#{resource.silence_till.strftime('%Y-%m-%d')}
+      %div
+        %span
+          = link_to '禁言', silence_user_admin_user_path(resource), method: 'get', remote: true
+        %span
+          - if resource.blocked?
+            = link_to '取消拉黑', unblock_user_admin_user_path(resource), method: 'post',
+                             remote: true, data: { confirm: '确定吗?' }
+          - else
+            = link_to '拉黑', block_user_admin_user_path(resource), method: 'post',
+                             remote: true, data: { confirm: '加入黑名单后，用户将不能发出任何的消息，无法参与留言和赞赏。' }
+        %span
+          - if resource.banned?
+            = link_to '解封', user_banned_admin_user_path(resource), method: 'post',
+                               remote: true, data: { confirm: '确定解封用户吗?' }
+          - else
+            = link_to '停封账号', user_banned_admin_user_path(resource), method: 'post',
+                             remote: true, data: { confirm: '停封后用户将无法登录APP, 确定吗?' }

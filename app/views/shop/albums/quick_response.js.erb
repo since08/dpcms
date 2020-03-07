@@ -1,0 +1,7 @@
+<% if @album.errors.any? %>
+var html = "<%= escape_javascript(render 'layouts/error_messages', object: @album) %>";
+$('#quick-errors').html(html);
+<% else %>
+$.fancybox.close();
+window.location.reload();
+<% end %>

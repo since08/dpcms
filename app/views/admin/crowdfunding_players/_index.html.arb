@@ -1,0 +1,27 @@
+context.instance_eval do
+  column(:logo, sortable: false) { |obj|  obj.player.preview_logo.present? ? image_tag(obj.player.preview_logo, height: 150) : '' }
+  column(:name) { |obj| obj.player.name.to_s + "(#{obj.player.nick_name})" }
+  column :sell_stock
+  column :stock_number
+  column :stock_unit_price
+  column :cf_money
+  column(:fans) { |obj| obj.order_fans[:number] }
+  column(:order_stock_number) { |obj| obj.counter.order_stock_number }
+  column(:order_stock_money) { |obj| obj.counter.order_stock_money }
+  actions name: '操作', class: 'info_actions' do |cf_player|
+    cf = cf_player.crowdfunding
+    if cf_player.published
+      item '取消发布', unpublish_admin_crowdfunding_crowdfunding_player_path(cf, cf_player),
+           data: { confirm: '确定取消吗？' }, method: :post
+    else
+      item '发布', publish_admin_crowdfunding_crowdfunding_player_path(cf, cf_player),
+           data: { confirm: '确定发布吗？' }, method: :post
+    end
+    item '比赛结果', result_admin_crowdfunding_crowdfunding_player_path(cf, cf_player), remote: true
+    if cf_player.success? && !cf_player.init?
+      item '扑客币发放', poker_coin_admin_crowdfunding_crowdfunding_player_path(cf, cf_player), remote: true
+    end
+  end
+end
+
+

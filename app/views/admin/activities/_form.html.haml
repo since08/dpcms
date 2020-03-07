@@ -1,0 +1,35 @@
+- resource.activity_en || resource.build_activity_en
+= semantic_form_for [:admin, resource] do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :title, as: :embedded_string, embedded_html: :with_en
+    = f.input :tag, as: :embedded_string, embedded_html: :with_en
+    = f.input :link, as: :embedded_string, embedded_html: :with_en
+    = f.input :push_type, as: :select, collection: TRANS_AC_PUSH_TYPES, prompt: true
+    = f.input :activity_time
+    = f.input :start_push
+    = f.input :end_push
+    = f.input :pushed_img, as: :attachment, required: true,
+                     image: proc { |o| o.preview_pushed_img }
+    = f.input :banner, as: :attachment, required: true,
+                     image: proc { |o| o.preview_banner }
+    = f.semantic_fields_for :activity_en do |form|
+      = form.input :pushed_img, as: :attachment, required: true,
+                    image: proc { |o| o.preview_pushed_img }
+      = form.input :banner, as: :attachment, required: true,
+                    image: proc { |o| o.preview_banner }
+
+    = multilingual_editor_switch
+    %li#markdown_cn
+      = f.text_area :description
+    %li#markdown_en
+      = f.semantic_fields_for :activity_en do |form|
+        ~ form.text_area :description
+
+  = f.actions
+:javascript
+  $(function() {
+    dpEditor.call($('#activity_description'), $('form.activity'));
+    dpEditor.call($('#activity_activity_en_attributes_description'), $('form.race'),
+         { placeholder: 'Here to enter text...' });
+  });

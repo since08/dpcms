@@ -1,0 +1,14 @@
+- @comments = resource.comments
+%div.body-container
+  %h2= resource.title
+  %div.line-4
+    %div.right-20
+      = avatar(resource.user.avatar_path)
+    %div
+      %h3= resource.user.nick_name
+      %p= resource.created_at.strftime("%F %T")
+      %p 阅读量 #{resource.counter.page_views}  点赞数 #{resource.counter.likes}  评论数 #{resource.counter.comments}
+  %div
+    = render partial: 'show_body', locals: { resource: resource }
+%h4#comment 全部评论 (#{resource.counter.comments})
+= render 'admin/comments/index'

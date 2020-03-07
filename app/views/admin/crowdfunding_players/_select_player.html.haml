@@ -1,0 +1,6 @@
+%div.select_cf_player
+  = form_tag player_lists_admin_crowdfunding_crowdfunding_players_path, method: :get, remote: true do
+    = search_field_tag 'content', nil, placeholder: '搜索...'
+    = submit_tag '提交'
+
+  %div.cf_player_body

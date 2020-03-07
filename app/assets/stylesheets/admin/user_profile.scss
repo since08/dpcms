@@ -1,0 +1,96 @@
+.user_profile_container {
+  .container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+
+    .user_info {
+      margin-left: -80px;
+    }
+
+    .basic {
+      display: flex;
+      .u-right {
+        margin-left: 10px;
+        :nth-child(2) {
+          margin-top: 3px;
+        }
+      }
+    }
+
+    .bottom {
+      margin-left: -16px;
+      padding: 5px;
+    }
+
+    .dynamic {
+      margin-left: 32px;
+      margin-top: 7px;
+    }
+
+    .register_date {
+      display: flex;
+      flex-direction: column;
+
+      >div:nth-child(2){
+        padding: 14px 17px;
+
+        >span:last-child {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+.silence_options {
+  #silence_till {
+    width: 150px;
+  }
+}
+
+.add_user_tag_list {
+  .tag_option {
+    display: flex;
+    > div{
+      display: flex;
+      flex-wrap: wrap;
+      padding : 20px 20px;
+    }
+
+    .tag_list > div {
+      border: 1px solid white;;
+      padding: 4px 12px;
+      margin: 3px;
+    }
+  }
+
+  .add_tag_option {
+    margin: 30px 8px;
+
+    input#name {
+      width: 15%;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

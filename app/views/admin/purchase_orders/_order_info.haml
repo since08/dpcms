@@ -1,0 +1,34 @@
+- order = @purchase_order
+- auth_status = order.user_extra.present? && order.user_extra.status.eql?('passed')
+
+.order_info
+  .operation
+    %span.label 订单状态：
+    %span.status= I18n.t("order.#{order.status}")
+    %span
+      - if order.status.eql? 'unpaid'
+        = form_tag(change_status_admin_purchase_order_path(order, change_status: 'paid'), method: 'post', remote: true) do
+          = submit_tag '确认已付款', data: { confirm: '确定操作吗？', status: auth_status }
+      - elsif order.paid? && order.ticket_type.eql?('e_ticket')
+        = form_tag(change_status_admin_purchase_order_path(order, change_status: 'delivered'), method: 'post', remote: true) do
+          = submit_tag '确认发货', data: { confirm: '确定操作吗？', status: auth_status }
+
+  %h3 订单信息
+  %hr
+
+  .detail
+    %table.detail_table
+      %tr
+        %td
+          %span 商品信息：
+          %span= order.ticket_type.eql?('e_ticket') ? '电子票' : '实体票'
+        %td
+          %span 订单编号：
+          %span= order.order_number
+        %td
+          %span 订单状态：
+          %span= I18n.t("order.#{order.status}")
+        %td
+          %span 下单时间：
+          %span= order.created_at
+

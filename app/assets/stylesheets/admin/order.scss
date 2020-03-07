@@ -1,0 +1,114 @@
+.order_info{
+  .operation{
+    margin-left: 73%;
+
+    .label, .status{
+      font-size: 14px;
+    }
+
+    .status{
+      color: blue;
+    }
+
+    input[type=submit]{
+      margin-left:80px;
+      margin-top:10px;
+    }
+  }
+}
+
+.order_race_info{
+  table{
+    table-layout: fixed;
+  }
+
+  .change_price{
+    display: none;
+  }
+
+  .change_price input[name='order_price']{
+    width: 100px;
+  }
+
+  .update_price{
+    .order_price_modified{
+      display: inline-block;
+      margin-left: 120px;
+      margin-top: 10px;
+    }
+  }
+
+  .number{
+    color:red;
+  }
+
+  .order_amount{
+    .price{
+      margin-top: 20px;
+    }
+  }
+}
+
+.user_info{
+  table{
+    table-layout: fixed;
+  }
+
+  .account table span{
+    font-size: 14px;
+  }
+
+  .authorize{
+    margin-top: 50px;
+
+    .user_extra{
+      .image{
+        width: 400px;
+      }
+
+      .real_name, .card_id, .status, .user_memo{
+        font-size: 14px;
+      }
+
+      .card_id, .status, .user_memo{
+        margin-top: 20px;
+      }
+
+      .order_edit{
+        margin-top: 15px;
+        margin-left: 20px;
+      }
+
+      .order_edit, .audit_passed, .audit_failed{
+        display: inline-block;
+      }
+    }
+  }
+
+  .order_audit_hidden{
+    display: none;
+  }
+}
+
+.order_address{
+  .title, .update_order_address{
+    display: inline-block;
+  }
+
+  .edit_order{
+    .ticket_order{
+      font-size: 16px;
+    }
+
+    .ticket_order_edit{
+      display: none;
+      legend, label, span{
+        font-size: 14px;
+      }
+    }
+
+    .ticket_order span{
+      display: block;
+    }
+  }
+}

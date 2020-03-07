@@ -1,0 +1,15 @@
+context.instance_eval do
+  column('赛事图片', sortable: false) { race.logo.url ? image_tag(race.preview_logo, height: 150, width: 105) : '' }
+  column(:ticket_class, sortable: false) { |ticket| I18n.t("ticket.ticket_class.#{ticket.ticket_class}") }
+  column(:role_group, sortable: false) { |ticket| I18n.t("ticket.role_group.#{ticket.role_group}") }
+  column(:title, sortable: false)
+  column(:price, sortable: false)
+  column(:original_price, sortable: false)
+  # column(:status, sortable: false)
+  # column(:ticket_class, sortable: false)  { |ticket| I18n.t("ticket.ticket_class.#{ticket.ticket_class}") }
+  column('电子票', sortable: false) { |ticket| surplus_e_ticket(ticket.ticket_info) }
+  column('实体票', sortable: false) { |ticket| surplus_entity_ticket(ticket.ticket_info) }
+  actions
+end
+
+

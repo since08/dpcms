@@ -1,0 +1,19 @@
+context.instance_eval do
+  column(:level)
+  column('盲注', sortable: false) { |blind| blind_text(blind) }
+  column(:ante, sortable: false)
+  column(:race_time, sortable: false)
+  actions(defaults: false) do |blind|
+    item I18n.t('active_admin.edit'), edit_resource_path(blind),
+         title: I18n.t('active_admin.edit'),
+         remote: true,
+         class: 'edit_link member_link'
+
+    item I18n.t('active_admin.delete'), resource_path(blind),
+         title: I18n.t('active_admin.delete'),
+         class: 'delete_link member_link',
+         method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')}
+  end
+end
+
+

@@ -1,0 +1,41 @@
+.show_user_dynamics {
+  padding: 10px 50px;
+
+  .person_info {
+    display: flex;
+    .u-right {
+      margin-left: 2px;
+      padding: 10px;
+      :nth-child(2) {
+        margin-top: 3px;
+      }
+    }
+    padding: 0 5px;
+    border-bottom: 1px solid gray;
+  }
+
+  .my_dynamics {
+    .d-left {
+      margin-top: 8px;
+    }
+
+    .d-right {
+      margin-left: 48px;
+      display: flex;
+      flex-direction: column;
+
+      >div {
+        display: flex;
+      }
+
+      .content {
+        padding: 5px;
+        line-height: 1.7;
+      }
+    }
+  }
+
+  .index_foot {
+    margin-bottom: 35px;
+  }
+}

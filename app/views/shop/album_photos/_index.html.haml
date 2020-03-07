@@ -1,0 +1,9 @@
+%div.album_photo_index
+  %div.index_actions
+    %span= select_tag(:album, options_from_collection_for_select(Album.all, :id, :name), prompt: '所有')
+    %span= link_to '上传图片', quick_add_shop_album_photos_path, class: 'fancybox action upload_image', data: { 'fancybox-type': 'ajax' }
+  %hr
+  %div.photo_with_pagination
+
+
+

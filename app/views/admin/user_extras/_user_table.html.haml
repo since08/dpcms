@@ -1,0 +1,14 @@
+%div
+  %div
+    %form{class: 'search_user_form left', action: admin_users_path(format: :json, per_page: 10), data: { remote: true }}
+      %input{name: 'q[nick_name_contains]', type: 'search', id: 'input_search_user'}
+      %input{name: 'submit', type: 'submit', value: '搜索', id: 'btn_search_user'}
+
+  %table.users
+    %thead
+      %tr
+        %th UUID
+        %th 昵称
+        %th 手机号
+        %th 邮箱
+    %tbody

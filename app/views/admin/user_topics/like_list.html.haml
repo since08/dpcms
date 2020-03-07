@@ -1,0 +1,17 @@
+%div
+  %table.index_table
+    %thead
+      %tr
+        %th 头像
+        %th 昵称
+        %th id
+        %th 时间
+    %tbody
+      - @topic_likes.each do |topic_like|
+        %tr
+          %td= avatar(topic_like.user.avatar_path)
+          %td= topic_like.user.nick_name
+          %td= topic_like.user_id
+          %td= topic_like.created_at
+  %div.index_foot
+    = paginate(@topic_likes, remote: true)

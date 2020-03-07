@@ -1,0 +1,5 @@
+%div
+  = semantic_form_for @refund, url: reject_refund_shop_product_refund_path(@refund) do |f|
+    = f.inputs  do
+      = f.input :admin_memo
+      = f.submit('提交')

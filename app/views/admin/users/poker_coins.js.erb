@@ -1,0 +1,9 @@
+$('.user_poker_coins').parents(".ui-dialog").remove();
+
+var html = "<%= j(render('poker_coin', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '45%',
+    title: '扑客币动态',
+    position: { my: 'top', at: 'top+250' }
+});

@@ -1,0 +1,12 @@
+$('form.test_user').parents(".ui-dialog").remove();
+var html = "<%= j(render('form', remote: true)) %>";
+// 为了dialog有标题
+$(html).dialog({
+    modal: true,
+    width: '40%',
+    title: '用户列表'
+});
+
+SearchUsers.bindEents();
+$('#btn_search_users').click();
+$('#input_search_users').focus();

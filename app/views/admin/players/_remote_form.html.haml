@@ -1,0 +1,9 @@
+%div
+  = semantic_form_for [:admin, @player], remote: true do |f|
+    = f.inputs do
+      = f.input :name
+      = f.input :country, as: :string
+      = f.input :dpi_total_earning
+      = f.input :dpi_total_score
+      = f.input :memo
+      = f.submit

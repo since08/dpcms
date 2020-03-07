@@ -1,0 +1,15 @@
+= semantic_form_for [:admin, @user] do |f|
+  = f.inputs name: '用户管理' do
+    %li
+      %span
+        昵称：
+      %span
+        = @user.nick_name
+    %li
+      %span
+        邮箱：
+      %span
+        = @user.email
+    = f.input :mobile
+    = f.input :mark
+    = f.actions

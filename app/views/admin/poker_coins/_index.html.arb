@@ -1,0 +1,20 @@
+context.instance_eval do
+  column(:avatar, sortable: false) do |p|
+    p.user.avatar.url ? image_tag(p.user.avatar, height: 100, width: 100) : ''
+  end
+  column(:user_uuid) { |p| p.user&.user_uuid }
+  column(:user_name) { |p| p.user&.nick_name }
+  column(:mobile) { |p| p.user&.mobile }
+  column :typeable
+  column :orderable
+  column :number do |p|
+    p.number < 0 ? "-#{p.number}" : "+#{p.number}"
+  end
+  column :memo, sortable: false
+  column :created_at
+  actions name: '操作', defaults: false do |p|
+    item '扑客币调整', coin_admin_poker_coin_path(p), class: 'member_link', remote: true
+  end
+end
+
+

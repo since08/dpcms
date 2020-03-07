@@ -1,0 +1,15 @@
+- @info_type.info_type_en || @info_type.build_info_type_en
+= semantic_form_for [:admin, @info_type] do |f|
+  = f.inputs name: '资讯类别' do
+    = f.semantic_errors *f.object.errors.keys
+    %li
+      %div
+        %label 类别名称
+        %span 中文：
+        = f.text_field :name
+        %span{class: 'common_input_style_en'} 英文：
+        = f.semantic_fields_for :info_type_en do |eng_type|
+          = eng_type.text_field :name
+    = f.input :published
+    = f.input :level
+    = f.actions

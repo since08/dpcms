@@ -1,0 +1,4 @@
+%div#import_players
+  = form_tag import_admin_players_path, multipart: true do
+    %li= file_field_tag :file
+    = submit_tag '提交'

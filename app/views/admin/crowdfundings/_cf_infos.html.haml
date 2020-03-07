@@ -1,0 +1,23 @@
+- description = @crowdfunding.crowdfunding_categories
+%div.crowdfunding-mutil-descs
+  %li{ class: 'cf-category-li' }
+    - description.each do |item|
+      %span{ 'data-id': item.id }= item.name
+    - if @crowdfunding.persisted?
+      = link_to '添加栏目', add_category_admin_crowdfunding_path(@crowdfunding), remote: true
+      (添加会刷新当前页面,请保存好数据)
+  %li
+    - f.has_many :crowdfunding_categories, heading: '', new_record: false, allow_destroy: true do |t|
+      = t.hidden_field :name
+      ~ t.text_area :description, display: 'none', id: "cf-textarea-#{t.object.id}"
+
+:javascript
+  $(function() {
+      objs = $(".crowdfunding-mutil-descs .has_many_fields textarea");
+      objs.each(function(){
+        dpEditor.call($(this), $('form.crowdfunding'));
+      });
+      var fieldset = $('.has_many_container fieldset');
+      fieldset.hide();
+      fieldset.first().show();
+  });

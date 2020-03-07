@@ -1,0 +1,6 @@
+<% if @race_rank.errors.blank? %>
+window.location.reload();
+<% else %>
+var html = "<%= j(render('form', remote: true)) %>";
+$('form.race_rank').replaceWith(html);
+<% end %>

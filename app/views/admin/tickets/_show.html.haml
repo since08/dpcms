@@ -1,0 +1,60 @@
+%div#ticket_manage
+  %div.float_container
+    = hidden_field(:ticket_info, :id, value: ticket_info.id)
+    = hidden_field(:race, :id, value: race.id)
+    %div
+      = show_big_logo_link(race)
+    %div
+      %ul
+        %li= Race.human_attribute_name(:name) + ': ' + race.name
+        %li= I18n.t('race.period') + ': ' + race_period(race)
+        %li= Race.human_attribute_name(:location) + ': ' + race.location
+        %li= surplus_ticket(ticket_info)
+    %div
+      %div
+        %ul
+          -#%li= cancel_sell_ticket_link(race)
+          %li= select_to_ticket_status(ticket)
+  %div
+    %div
+      %span 票务金额管理
+    %div
+      %span= Ticket.human_attribute_name(:price)
+      %span.red= rmb_format(ticket.price)
+      %br
+      %span= Ticket.human_attribute_name(:original_price)
+      %span.red= rmb_format(ticket.original_price)
+  %div.ticket_number_manage
+    %div.right_border_separator
+      %div 票数管理
+      %div
+        电子票：
+        %span{class: :red, id: :e_ticket_text, data: {surplus_e_ticket: ticket_info.surplus_e_ticket}}
+          = "共#{ticket_info.e_ticket_number}张，已售#{ticket_info.e_ticket_sold_number}张，剩余#{ticket_info.surplus_e_ticket}张"
+      %div
+        = form_tag(change_number_admin_race_ticket_path(race, ticket), method: :post) do
+          %label 新增票数：
+          = number_field_tag 'e_ticket_increment', nil, min: 0
+          = submit_tag '保存', data: { confirm:'确定更新吗？' }
+      %div
+        = form_tag(change_number_admin_race_ticket_path(race, ticket), method: :post) do
+          %label 减少票数：
+          = number_field_tag 'e_ticket_decrement', nil, min: 0
+          = submit_tag '保存', data: { confirm:'确定更新吗？' }
+    %div.padding_left
+      %div &nbsp;
+      %div
+        实体票：
+        %span{class: :red, id: :entity_ticket_text, data: {surplus_entity_ticket: ticket_info.surplus_entity_ticket}}
+          = "共#{ticket_info.entity_ticket_number}张，已售#{ticket_info.entity_ticket_sold_number}张，剩余#{ticket_info.surplus_entity_ticket}张"
+      %div
+        = form_tag(change_number_admin_race_ticket_path(race, ticket), method: :post) do
+          %label 新增票数：
+          = number_field_tag 'entity_ticket_increment', nil, min: 0
+          = submit_tag '保存', data: { confirm:'确定更新吗？' }
+      %div
+        = form_tag(change_number_admin_race_ticket_path(race, ticket), method: :post) do
+          %label 减少票数：
+          = number_field_tag 'entity_ticket_decrement', nil, min: 0
+          = submit_tag '保存', data: { confirm:'确定更新吗？' }
+

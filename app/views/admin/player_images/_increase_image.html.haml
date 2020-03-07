@@ -1,0 +1,6 @@
+%div.increase_image
+  = form_tag increase_image_admin_player_images_path, method: :post, remote: true do
+    = hidden_field_tag :player_id, @player.id
+    = file_field_tag :image
+    = submit_tag '提交'
+

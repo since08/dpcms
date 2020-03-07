@@ -1,0 +1,29 @@
+%div.panel
+  %table.blinds.index_table
+    %thead
+      %tr
+        %th= RaceBlind.human_attribute_name(:level)
+        %th 盲注
+        %th= RaceBlind.human_attribute_name(:ante)
+        %th= RaceBlind.human_attribute_name(:race_time)
+        %th 操作
+    %tbody
+      - race_blinds.each do |blind|
+        %tr{'data-id': blind.id}
+          - if blind.blind_struct?
+            %td= blind.level
+            %td= blind_text(blind)
+            %td= blind.ante
+            %td= "#{blind.race_time} min"
+          - else
+            %td{colspan: 4, style: 'text-align: center;'}= blind.content
+          %td
+            = link_to I18n.t('active_admin.edit'), edit_resource_path(blind),
+                      title: I18n.t('active_admin.edit'),
+                      remote: true,
+                      class: 'edit_link member_link'
+            |
+            = link_to I18n.t('active_admin.delete'), resource_path(blind),
+                      title: I18n.t('active_admin.delete'),
+                      class: 'delete_link member_link',
+                      method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')}

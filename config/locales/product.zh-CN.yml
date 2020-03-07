@@ -1,0 +1,114 @@
+"zh-CN":
+  activerecord:
+    models:
+      product_order: '商品订单'
+      product_order_item: '订单条目'
+      product_shipment: '快递管理'
+      product_image: '商品图片管理'
+      product_shipping_address: '商品收货地址'
+      album: "相册列表"
+      album_photo: "相册图片"
+      product: "商品"
+      variant: "商品规格组合"
+      option_type: "规格"
+      option_value: "规格值"
+      product_refund: "商品退款"
+      freight: '运费管理'
+      fre_special: '运费区域管理'
+      express_code: '快递管理'
+    attributes:
+      product_order:
+        user_id: '用户'
+        order_number: '订单编号'
+        name: '名称'
+        status: '订单状态'
+        pay_status: '支付状态'
+        shipping_status: '发货状态'
+        shipping_price: '运费'
+        total_product_price: '商品总价'
+        total_price: '订单总价'
+        cancelled_at: '取消时间'
+        cancel_reason: '取消原因'
+        created_at: '下单时间'
+        updated_at: '更新时间'
+        user_user_uuid: '用户ID'
+        user_email_or_user_mobile: '用户账户(手机或邮箱)'
+      product_order_item:
+        product_order_id: '所属订单'
+        variant_id: '商品'
+        price: '价格'
+        number: '数量'
+        shipping_status: '发货状态'
+      product_shipment:
+        express_code_id: '快递公司'
+        shipping_number: '快递单号'
+      category:
+        name: "分类名称"
+        image: "分类图片"
+      product:
+        title: "商品标题"
+        icon: "商品图标"
+        type: "商品类型"
+        freight: "运费模板"
+        freight_free: "是否免运费"
+        product_type: "商品类型"
+        published: "是否上架"
+        seven_days_return: "支持7天退货"
+        recommended: "是否推荐"
+        description: "商品描述"
+      variant:
+        original_price: "商品价格"
+        price: "实付价格"
+        stock: "库存"
+        weight: "商品重量"
+        volume: "商品体积"
+        origin_point: "发货地点"
+      option_type:
+        name: "名称"
+        product: "商品名"
+      option_value:
+        name: "名称"
+        option_type: "规格名"
+      product_refund:
+        refund_number: "退款编号"
+        status: "退款状态"
+        refund_price: "退款金额"
+        admin_memo: "审核备注"
+        refund_poker_coins: "退款扑客币"
+      product_wx_bill:
+        bank_type: '付款银行'
+        cash_fee: '现金支付金额(元)'
+        fee_type: '货币类型'
+        out_trade_no: '订单编号'
+        time_end: '支付时间'
+        total_fee: '付款金额(元)'
+        transaction_id: '交易流水号'
+        trade_type: '交易方式'
+        result_code: '交易状态码'
+        return_code: '交易信息'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        open_id: '微信ID'
+      freight:
+        name: '计费方式'
+        first_cond: '首单位(kg|m|件)'
+        first_price: '首价格(元)'
+        add_cond: '续单位'
+        add_price: '续价格'
+        default: '是否默认'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      fre_special:
+        first_cond: '首单位'
+        first_price: '首价格'
+        add_cond: '续单位'
+        add_price: '续价格'
+      express_code:
+        name: '快递名称'
+        express_code: '快递编码'
+        region: '快递类型'
+        published: '开启'
+        phone: '官方电话'
+        site: '官网完整地址'
+
+

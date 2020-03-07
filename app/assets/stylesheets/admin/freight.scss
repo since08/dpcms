@@ -1,0 +1,83 @@
+.fre_table{
+  border: 1px solid #cdcdcd;
+  border-collapse:collapse;
+  width: 70%;
+  margin:0 auto;
+
+  td, th, caption {
+    border:1px solid #cdcdcd;
+    padding: 15px 15px;
+    text-align: center;
+  }
+
+  thead th{
+    background-color: ghostwhite;
+  }
+
+  a:link {
+    text-decoration:none;
+    border: 1px solid #5E6469;
+    padding: 2px 6px 2px 6px;
+    cursor: pointer;
+  }
+}
+
+.fre_detail {
+  .option_table{
+    width: 80%;
+    background: #eeeeee;
+    margin-left: 20px;
+    padding: 20px 20px 30px 20px;
+    div{
+      margin: 20px 0px 20px 0px;
+    }
+
+    table, td, th{
+      border: 1px solid black;
+      border-collapse:collapse;
+    }
+  }
+  .fre_way {
+    span {
+      input {
+        margin-right: 10px;
+      }
+    }
+  }
+  .fre_option{
+    margin-top: 40px;
+    margin-left: 20px;
+    display: -webkit-flex;
+    display: flex;
+
+    .fre_default {
+      margin-left: 24px;
+    }
+
+    .fa-plus-circle{
+      margin-left: 8px;
+    }
+  }
+}
+
+.fre_province_select{
+  span{
+    font-family: 'Helvetica', 'Arial', serif;
+    font-weight: bold;
+    padding: 6px;
+    margin: 8px 4px 8px 4px;
+    margin-left: 10px;
+  }
+
+  div{
+    margin-top: 10px;
+  }
+
+  .blue {
+    background: cornflowerblue;
+  }
+
+  button{
+    margin-left: 13px;
+  }
+}

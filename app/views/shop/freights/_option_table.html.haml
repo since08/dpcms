@@ -1,0 +1,71 @@
+- def default_temp(obj, field)
+  - best_in_place obj, :"#{field}", as: 'input', place_holder: '点我添加', url: [:shop, obj]
+- diff_en = resource.id.eql?(1) ? 'kg' : (resource.id.eql?(2) ? '件' : 'm²')
+- diff_zh = resource.id.eql?(1) ? '重' : (resource.id.eql?(2) ? '件' : '体积')
+%div
+  %span 设置默认邮费：
+  %span= default_temp(resource, 'first_cond')
+  = "#{diff_en}内，"
+  %span= default_temp(resource, 'first_price')
+  元，
+  %span 每增加：
+  = default_temp(resource, 'add_cond')
+  = "#{diff_en}，"
+  %span 增加：
+  = default_temp(resource, 'add_price')
+  元
+
+  %div{class: 'special_area'}
+    为特定地区设置邮费：
+  %div
+    %table
+      %thead
+        %tr
+          %td 运送到
+          %td
+            = "首#{diff_zh}(#{diff_en})"
+          %td 首费(元)
+          %td
+            = "续#{diff_zh}(#{diff_en})"
+          %td 续费(元)
+          %td 操作
+        - resource.fre_specials.each do |special|
+          %tr
+            %td
+              %span
+                - special.fre_special_provinces.each do |list|
+                  %span= list.province_name
+              = link_to '新增', add_province_view_shop_fre_special_path(special), method: :post, remote: true
+            %td
+              = default_temp(special, 'first_cond')
+            %td
+              = default_temp(special, 'first_price')
+            %td
+              = default_temp(special, 'add_cond')
+            %td
+              = default_temp(special, 'add_price')
+            %td
+              = link_to '删除', remote_delete_shop_fre_special_path(special),
+                      method: :post,
+                      data: {confirm: I18n.t('active_admin.delete_confirmation')},
+                      remote: true
+  %div
+    %span
+      = link_to '添加特定地区', new_shop_freight_fre_special_path(resource), remote: true
+
+  - unless resource.eql?(Freight.first)
+    %div
+      %span 亲！在多件不同邮费计费规则情况下，系统会按照重量模版计算邮费
+
+    %div{class: 'fre_default'}
+      %span 设置默认邮费[和重量计费模版同步]：
+      %span= default_temp(Freight.first, 'first_cond')
+      kg内，
+      %span= default_temp(Freight.first, 'first_price')
+      元，
+      %span 每增加：
+      = default_temp(Freight.first, 'add_cond')
+      kg，
+      %span 增加：
+      = default_temp(Freight.first, 'add_price')
+      元

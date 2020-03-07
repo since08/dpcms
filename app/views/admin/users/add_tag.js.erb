@@ -1,0 +1,35 @@
+$('.add_user_tag_list').parents(".ui-dialog").remove();
+
+var html = "<%= j(render('add_tag', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '40%',
+    title: '添加标签',
+    position: { my: 'left top', at: 'left+630 top+300' }
+});
+
+$(".tag_list span").click(
+    function(){
+        selected = $(this).data('selected');
+        $(this).data('selected', !selected);
+        var uid = $(this).data('uid');
+        var tid = $(this).data('tid');
+        if(!selected) {
+            $(this).addClass('color-blue');
+            url = "/admin/users/"+uid+"/add_tag"
+        }else{
+            $(this).removeClass('color-blue')
+            url = "/admin/users/"+uid+"/remove_tag"
+        }
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: { tag_id: tid }
+        });
+    }
+);
+$('.tag_list').parents(".ui-dialog").find('.ui-dialog-titlebar-close').bind('click', function(){
+    var html = "<%= escape_javascript(render 'dynamic_tags') %>";
+    $('.user_profile_container .dynamic_tags').html(html);
+})
+

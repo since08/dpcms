@@ -1,0 +1,39 @@
+.img-circle {
+    border-radius: 50%;
+}
+
+.color-blue {
+    color: blue;
+}
+
+.color-red {
+    color: red;
+}
+
+.title_color {
+    color: #2a4691;
+}
+
+.default_user_avatar{
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    background: #dfdfdf;
+    font-size: 16px;
+    font-family: Tahoma,Helvetica,Arial,'宋体',sans-serif;
+    border-radius:50%
+}
+
+.default_use_image {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background: #dfdfdf;
+    font-size: 16px;
+}
+
+.color-b3 {
+    color: #b3b3b3;
+}

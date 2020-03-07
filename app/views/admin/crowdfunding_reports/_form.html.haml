@@ -1,0 +1,24 @@
+= semantic_form_for [:admin, @crowdfunding, @crowdfunding_report] do |f|
+  = f.inputs do
+    = f.semantic_errors *f.object.errors.keys
+    %li
+      %label 赛事
+      %span= @crowdfunding&.race&.name
+    = f.input :record_time
+    - name = f.object.name.blank? ? @crowdfunding&.race&.name : f.object.name
+    = f.input :name, input_html: { value: name }
+    = f.input :title
+    = f.input :level
+    = f.input :small_blind
+    = f.input :big_blind
+    = f.input :ante
+    = f.input :crowdfunding_player_id, as: :select, collection: @crowdfunding.crowdfunding_players.published, prompt: true
+    ~ f.text_area :description
+    = f.actions
+
+:javascript
+    $(function() {
+        dpEditor.call($('#crowdfunding_report_description'),
+         $('form.crowdfunding_report'), { placeholder: "请输入图文信息..." });
+    });
+

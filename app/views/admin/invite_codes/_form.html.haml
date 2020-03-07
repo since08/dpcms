@@ -1,0 +1,8 @@
+= semantic_form_for [:admin, resource] do |f|
+  = f.inputs do
+    = f.input :name
+    = f.input :mobile
+    = f.input :email
+    = f.input :coupon_type, as: :select, collection: COUPON_TYPE, prompt: true
+    = f.input :coupon_number, hint: '如果是折扣，输入98代表98折，折扣的区间1 - 99。如果是减价，那么直接输入要减去的价格即可'
+    = f.actions

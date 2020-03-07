@@ -1,0 +1,52 @@
+context.instance_eval do
+  selectable_column
+  column(:id)
+  column(:user_name, sortable: false)
+  column(:avatar, sortable: false) do |user|
+    user.avatar.url ? image_tag(user.avatar, height: 100, width: 100) : ''
+  end
+  column(:nick_name, sortable: false)
+  column(:mobile, sortable: false)
+  column(:email, sortable: false)
+  column(:signature, sortable: false)
+  column(:user_extra_status, sortable: false) do |user|
+    status = user.user_extra.try(:status)
+    status.eql?('passed') ? '已实名' : '未实名'
+  end
+  column(:last_visit)
+  column(:login_count)
+  column(:mark)
+  column(:total_fee) do |user|
+    user.orders.where.not(status: %w(unpaid canceled)).sum('price')
+  end
+  column(:total_poker_coins) do |user|
+    link_to user.counter.total_poker_coins, poker_coins_admin_user_path(user), remote: true
+  end
+  column '说说', sortable: 'user_counters.short_topic_count' do |user|
+    link_to user.counter.short_topic_count, admin_user_topics_path(q: { user_id_eq: user.id, body_type_eq: 'short' })
+  end
+  column '长帖', sortable: 'user_counters.long_topic_count' do |user|
+    link_to user.counter.long_topic_count, admin_user_topics_path(q: { user_id_eq: user.id, body_type_eq: 'long' })
+  end
+  column '精华', sortable: 'user_counters.great_topic_count' do |user|
+    link_to user.counter.long_topic_count, admin_user_topics_path(q: { user_id_eq: user.id, recommended_eq: true })
+  end
+  column '关注', sortable: 'user_counters.following_count' do |user|
+    link_to user.counter.following_count, followings_admin_user_path(user)
+  end
+  column '粉丝', sortable: 'user_counters.follower_count' do |user|
+    link_to user.counter.follower_count, followers_admin_user_path(user)
+  end
+  actions(name: '操作', defaults: false) do |user|
+    item '详情', admin_user_path(user), class: 'member_link'
+    item '编辑', edit_admin_user_path(user), class: 'member_link'
+    if user.role.eql?('banned')
+      item '启用', user_banned_admin_user_path(user), data: { confirm: '确定取消禁用该用户吗？' }, method: :post, remote: true
+    else
+      item '禁用', user_banned_admin_user_path(user), data: { confirm: '确定禁用该用户吗？' }, method: :post, remote: true
+    end
+  end
+  actions(name: '实名操作', defaults: false) do |user|
+    item '实名管理', admin_user_user_extras_path(user)
+  end
+end

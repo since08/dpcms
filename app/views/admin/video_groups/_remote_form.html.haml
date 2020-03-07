@@ -1,0 +1,16 @@
+%div
+  = semantic_form_for [:admin, @video_group], remote: true do |f|
+    = f.inputs do
+      %li
+        %div
+          .label 组别名称:
+          %br
+          %div
+            %span 中文：
+            = f.text_field :name
+          %br
+          %div
+            %span 英文：
+            = f.semantic_fields_for :video_group_en do |en|
+              = en.text_field :name
+      = f.submit

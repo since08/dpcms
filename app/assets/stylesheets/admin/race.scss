@@ -1,0 +1,52 @@
+#ticket_manage {
+  height: 527px;
+  font-size: 16px;
+  > div {
+    width: 99%;
+    border-bottom: 1px solid #D3D3D3;
+    padding-left: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    float: left;
+  }
+
+  div {
+    padding: 10px;
+  }
+
+  .float_container {
+    div {
+      width: 30%;
+      height: 100%;
+      float: left;
+      padding-right: 10px;
+    }
+  }
+
+  .vertical {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  ul {
+    list-style:none;
+    li { padding: 3px;}
+  }
+
+  .ticket_number_manage {
+    border-bottom: none;
+    > div {
+      width:  48%;
+      float: left;
+      padding: 0;
+
+    }.padding_left { padding-left: 25px; }
+
+    input[type=number] {
+      width: calc(50% - 22px);
+    }
+  }
+  .right_border_separator { border-right: 1px solid #D3D3D3; }
+}
+.red { color:red; }

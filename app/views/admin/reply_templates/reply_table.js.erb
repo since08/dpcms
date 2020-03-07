@@ -1,0 +1,11 @@
+$('#btn_search_reply_template').parents(".ui-dialog").remove();
+var html = "<%= j(render('reply_table', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '50%',
+    title: '搜索模版',
+    position: { my: 'top', at: 'top+250' }
+});
+SearchTemplate.bindEents();
+$('#btn_search_reply_template').click();
+$('#input_search_reply_template').focus();

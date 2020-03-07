@@ -1,0 +1,7 @@
+$('#change_group').parents(".ui-dialog").remove();
+var html = "<%= j(render('change_group', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '50%',
+    title: '更换组别'
+});

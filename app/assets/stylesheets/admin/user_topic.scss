@@ -1,0 +1,21 @@
+.body-width {
+  max-width:360px;
+  min-width:360px;
+}
+.body-container {
+  width: 540px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+.line-4 {
+  display: flex;
+  line-height: 4px;
+}
+.right-20 {
+  margin-right: 20px
+}
+.nine-grid {
+  width: 32%;
+  height: 72px;
+}

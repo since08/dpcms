@@ -1,0 +1,7 @@
+%div
+  = form_for @refund, url: agree_refund_shop_product_refund_path(@refund),
+                      method: :patch do
+    %p 输入 "confirm" 后确认提交
+    %p= text_field_tag :confirm_code
+    %br
+    = submit_tag '确认'

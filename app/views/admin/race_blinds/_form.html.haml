@@ -1,0 +1,15 @@
+- resource.race_blind_en || resource.build_race_blind_en
+%div
+  = semantic_form_for [:admin, @race, @race_blind], remote: true do |f|
+    = f.inputs style: 'margin-bottom: -10px;' do
+      = f.input :race, collection: [[@race.name, @race.id]], prompt: true
+      = f.input :blind_type, collection: TRANS_BLIND_TYPES, prompt: true
+      = f.input :level
+    = f.inputs class: 'struct_inputs'  do
+      = f.input :small_blind
+      = f.input :big_blind
+      = f.input :ante
+      = f.input :race_time
+    = f.inputs class: 'content_inputs'  do
+      = f.input :content, as: :embedded_string, embedded_html: :with_en
+    = f.submit

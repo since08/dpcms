@@ -1,0 +1,6 @@
+var html = "<%= j(render('create_reply', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '46%',
+    title: '管理员评论'
+});

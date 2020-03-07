@@ -1,0 +1,25 @@
+- def common_temp(obj)
+  - if obj.default
+    -  '默认'
+  - else
+    - link_to '设为默认', set_default_shop_freight_path(obj), method: :post
+
+%div.container
+  %table{class: 'fre_table'}
+    %thead
+      %tr
+        %th 运费模版名称
+        %th 查看
+        %th 操作
+    - Freight.all.each do |freight|
+      %tr
+        %td
+          = "按#{freight.name}运费模版"
+        %td
+          = link_to '运费详情', shop_freight_path(freight)
+        %td
+          = common_temp(freight)
+
+
+
+

@@ -1,0 +1,29 @@
+%div.poker_coin
+  = form_tag coin_admin_poker_coin_path(resource), remote: true do
+    %div.info
+      %span
+        %span 用户：
+        %span.color-blue= resource.user&.nick_name
+      %span
+        %span 该类别获得的扑客币：
+        %span.color-blue=  @max_coin
+      %span
+        %span 用户总的扑客币
+        %span.color-blue= resource.user.counter.total_poker_coins
+    %div
+      %span 扑客币操作：
+      %span= label_tag :direction, '增加'
+      %span= radio_button_tag :direction, 'plus'
+      %span{style: 'margin-left: 20px'}= label_tag :direction, '减少'
+      %span= radio_button_tag :direction, 'decrease', true
+    %div
+      %label 增加或减少的数量(正数)：
+      %span
+        = text_field_tag 'number', nil, class: "number-input"
+      %span ( 该类别最多可扣除金额
+      %span.color-red #{@max_coin}
+      %span )
+    %div
+      %label 更改原因：
+      = text_area_tag 'memo', nil, placeholder: '请输入调整的原因，该填写信息将会展示在用户动态中心，务必谨慎！...'
+      = submit_tag '提交', data: { confirm: "操作不可逆，确定修改吗？" }

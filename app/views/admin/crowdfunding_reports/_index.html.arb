@@ -1,0 +1,17 @@
+context.instance_eval do
+  column :id
+  column :record_time
+  column :name, sortable: false
+  column :title, sortable: false
+  column :crowdfunding_player, sortable: false do |report|
+    report.crowdfunding_player&.name
+  end
+  column :level
+  column :small_blind
+  column :big_blind
+  column :ante
+  column :created_at
+  actions
+end
+
+

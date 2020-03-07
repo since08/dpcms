@@ -1,0 +1,27 @@
+- @comments = resource.comments.order_show
+%div.info_show_comments
+  %div
+    %h2 #{resource.title}
+    %span
+      %a{ href: '#', class: 'btn-move-page', 'data-type': 'bottom'}
+        %i{ class: 'fa fa-arrow-down' }
+  %div
+    %span #{resource.date}
+    %span #{I18n.t("info.#{resource.source_type}")} #{resource.source}
+  -#%div.description{'data-desc': resource.description, style: 'text-align: center'}
+  %div.description= sanitize resource.description
+  %div.views
+    %span
+      %span 阅读:
+      %span.color-blue= resource.total_views
+    %span
+      %span 评论数:
+      %span.color-blue= resource.total_comments
+    %span
+      %span 点赞数:
+      %span.color-blue= resource.total_likes
+  %div#comment
+    %h3 评论列表：
+    = render 'admin/comments/index'
+
+-#= render 'marked_script'

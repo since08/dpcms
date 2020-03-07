@@ -1,0 +1,19 @@
+context.instance_eval do
+  column('来源图片', sortable: false) { |hot_info|  image_tag(hot_info.source_image, height: 150) }
+  column(:source_type) { |hot_info| I18n.t("activerecord.models.#{hot_info.source_type.downcase}") }
+  column('来源标题') do |hot_info|
+    case hot_info.source_type
+      when 'Video'
+        link_to hot_info.source_title, admin_video_path(hot_info.source)
+      when 'Info'
+        link_to hot_info.source_title, admin_info_path(hot_info.source)
+    end
+  end
+  actions defaults: false do |hot_info|
+    item I18n.t('active_admin.delete'), resource_path(hot_info),
+         class: 'member_link', method: :delete,
+         data:   { confirm: I18n.t('active_admin.delete_confirmation') }
+  end
+end
+
+

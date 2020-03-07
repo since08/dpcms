@@ -1,0 +1,11 @@
+development:
+  - <%= ENV['CACHE_DATABASE_TYPE'] %>
+  - <%= ENV['CACHE_DATABASE_PATH'] %>
+
+test:
+  - <%= ENV['CACHE_DATABASE_TYPE'] %>
+  - <%= ENV['CACHE_DATABASE_PATH'] %>
+
+production:
+  - <%= ENV['CACHE_DATABASE_TYPE'] %>
+  - <%= ENV['CACHE_DATABASE_PATH'] %>

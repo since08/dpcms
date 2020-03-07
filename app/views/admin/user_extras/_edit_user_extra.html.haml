@@ -1,0 +1,17 @@
+- @user ||= @user_extra.user
+= semantic_form_for [:admin, @user, @user_extra] do |f|
+  = f.inputs name: '实名管理' do
+    = f.input :user_id, as: :hidden
+    %li#search_user_input
+      %label 用户
+      %input{type: 'text', disabled: 'disabled', value: @user_extra.user&.nick_name, placeHolder: '请搜索选择一个用户'}
+      %label &nbsp;
+      - if @user_extra.user.blank?
+        =link_to '搜索用户', user_table_admin_user_user_extra_path(1,1), remote: true
+    = f.input :real_name, required: true
+    = f.input :cert_type, as: :select, include_blank: false, collection: CERT_TYPE
+    = f.input :cert_no, required: true
+    = f.input :image, as: :file, hint: f.object.image.url.present? ? image_tag(f.object.image.url, height: 150) : nil
+    = f.input :memo
+    = f.input :status, as: :select, include_blank: false, collection: CERT_STATUS.collect { |d| [I18n.t("user_extra.#{d}"), d] }
+    = f.actions

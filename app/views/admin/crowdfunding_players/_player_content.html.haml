@@ -1,0 +1,23 @@
+%div.cf_search_player
+  %table.search_players
+    %thead
+      %tr
+        %th ID
+        %th 姓名
+        %th 昵称
+        %th 国籍
+    %tbody
+      - if @players.length.zero?
+        %tr
+          %td 没有相关数据
+      - else
+        - @players.each do |item|
+          %tr{ 'data-id': item.id, 'data-cid': @crowdfunding.id }
+            %td.base-info= item.id
+            %td.base-info= item.name
+            %td.base-info= item.nick_name
+            %td.base-info= item.country
+
+  %div.index_foot
+    = paginate(@players, remote: true)
+

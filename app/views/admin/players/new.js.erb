@@ -1,0 +1,8 @@
+$('form.player').parents(".ui-dialog").remove();
+
+var html = "<%= j(render('remote_form', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '380px',
+    title: '牌手管理'
+});

@@ -1,0 +1,32 @@
+context.instance_eval do
+  id_column
+  column :name, sortable: false
+  column :mobile, sortable: false
+  column :email, sortable: false
+  column :code, sortable: false
+  column :coupon_type, sortable: false do |code|
+    I18n.t("coupon_type.#{code.coupon_type}")
+  end
+  column :coupon_number, sortable: false do |code|
+    if code.coupon_type.eql?('rebate')
+        "* #{code.coupon_number}%"
+    elsif code.coupon_type.eql?('reduce')
+        "- #{code.coupon_number}元"
+    else
+        code.coupon_number
+    end
+  end
+  column :success_count, sortable: true do |code|
+    link_to code.success_count, admin_purchase_orders_path('q[invite_code_contains]': code.code, commit: '过滤', order: 'id_desc') + '&q[status_in][]=paid&q[status_in][]=delivered&q[status_in][]=completed'
+  end
+  column :offline_count, sortable: true do |code|
+    link_to code.offline_count, admin_offline_race_orders_path('q[invite_code_contains]': code.code, commit: '过滤', order: 'id_desc')
+  end
+  column :total_fee, sortable: true do |code|
+    code.total_fee
+  end
+  actions(name: '操作', defaults: false) do |code|
+    item '编辑', edit_admin_invite_code_path(code), class: 'member_link'
+    item '删除', admin_invite_code_path(code), data: { confirm: '确定删除吗？' }, method: :DELETE
+  end
+end

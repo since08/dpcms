@@ -1,0 +1,52 @@
+- order = @purchase_order
+- race = order.race
+- ticket = order.ticket
+
+.order_race_info
+  %table
+    %tr
+      %td
+        %a{ href: "#{race.logo}", target: '_blank' }
+          %img{ src: "#{race.logo}", width: '300px' }
+      %td
+        .title
+          %span 赛事标题：
+          %span #{race.name}
+        .time
+          %span 时间：
+          %span #{race.begin_date}
+        .location
+          %span 地点：
+          %span #{race.location}
+        .number
+          %span 剩余#{ticket.ticket_info.e_ticket_number - ticket.ticket_info.e_ticket_sold_number}张电子票,
+          #{ticket.ticket_info.entity_ticket_number - ticket.ticket_info.entity_ticket_sold_number}张实体票
+      %td
+        .order_amount
+          .order_amount
+            %span 订单总金额：
+            %span #{order.original_price}
+          .order_price
+            %span 小计金额：
+            %span #{order.price}
+          .deduction_price
+            %span 扑客币抵扣：
+            %span #{order.deduction_price}
+          .final_price
+            %span 实付金额：
+            %span #{order.final_price}
+        .change_price
+          = form_tag(change_price_admin_purchase_order_path(order.id), id: 'change_price', method: 'post', remote: true) do
+            %label{ for: 'order_price' } 实付金额：
+            = text_field_tag(:order_price)
+            = submit_tag '保存', data: { confirm: '确定更新吗？' }
+            %button.order_button_cancel 取消
+        .update_price
+          - if order.status.eql? 'unpaid'
+            .order_price_modified
+              %button 修改金额
+
+
+
+
+

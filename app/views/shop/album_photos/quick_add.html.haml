@@ -1,0 +1,15 @@
+%div{style: 'min-width: 400px;'}
+  %section#quick-errors
+    = render 'layouts/error_messages', object: @photo
+
+  = semantic_form_for @photo, url: quick_create_shop_album_photos_path, remote: true do |f|
+    = f.inputs do
+      - if @album
+        = f.input :album, collection: [[@album.name, @album.id]], include_blank: false
+      - else
+        = f.input :album, prompt: true
+      = f.input :image, as: :attachment,
+                        hint: '图片最大为 2MB',
+                        input_html: {multiple: 'multiple'},
+                        image: proc { |o| o.preview_image }
+    = f.submit data: { disable_with: '请稍等...' }

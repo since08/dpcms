@@ -1,0 +1,38 @@
+var html = "<%= j(render('province_form', remote: true)) %>";
+// 为了dialog有标题
+$(html).dialog({
+    modal: true,
+    width: '50%',
+    title: '新增特定地区'
+});
+
+$(".fre_province_select span").click(
+    function(){
+        console.log($(this).data('selected'));
+        selected = $(this).data('selected');
+        $(this).data('selected', !selected);
+        if(!selected) {
+            $(this).addClass('blue');
+        }else{
+            $(this).removeClass('blue')
+        }
+        console.log($(this).data('selected'));
+    }
+);
+
+$(".fre_province_select button").bind('click', function(){
+    list = $(".fre_province_select span.blue");
+    data = [];
+    for(i = 0; i < list.length; i++){
+        obj = { id: list[i].getAttribute('data-province-id') };
+        obj.name = list[i].innerText;
+        data.push(obj)
+    }
+    id = $(this).data('special');
+    console.log(data);
+    $.ajax({
+        url: "/shop/fre_specials/"+id+"/add_province",
+        data: { province: data },
+        type: "POST"
+    });
+});

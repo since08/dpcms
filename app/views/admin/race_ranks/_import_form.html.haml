@@ -1,0 +1,4 @@
+%div#import_ranks
+  = form_tag import_admin_race_race_ranks_path(@race), multipart: true do
+    %li= file_field_tag :file
+    = submit_tag '提交'

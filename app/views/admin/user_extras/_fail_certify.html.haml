@@ -1,0 +1,9 @@
+%div#fail_certify
+  = form_tag fail_certify_admin_user_extra_path(@user_extra), multipart: true do
+    %li#search_template_input
+      %label 不通过原因：
+      %input{type: 'text', name: 'memo', placeholder: '请输入不通过的理由！' }
+      %br
+      =link_to '快速回复模版', reply_template_table_admin_reply_template_path(1,1), remote: true, class: 'reply_tmp_link'
+      %br
+      = submit_tag '提交'

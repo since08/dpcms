@@ -1,0 +1,33 @@
+"zh-CN":
+  active_admin:
+    blank_slate:
+      link: ""
+    empty: "空"
+    scopes:
+      all: '全部'
+      unpaid: '待付款'
+      paid: '待发货'
+      delivered: '已发货'
+      completed: '已完成'
+      canceled: '已取消'
+      returning: '退货中'
+      returned: '已退货'
+      chinese_id: '身份证'
+      passport_id: '护照'
+      trade_success: '交易成功'
+      trade_fail: '交易失败'
+      race_order_succeed: '已购票'
+      need_auth: '需要审核'
+      auth_passed: '审核通过'
+      auth_failed: '审核拒绝'
+      main_videos: '主视频'
+      video_groups: '同类视频'
+      # UserTopic
+      square: '广场'
+      essence: '精华'
+    tag:
+      race_detail: '赛事详情'
+      race_ticket: '票务信息'
+    status_tag:
+          "yes": "是"
+          "no": "否"

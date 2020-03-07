@@ -1,0 +1,8 @@
+$('.select_cf_player').parents(".ui-dialog").remove();
+var html = "<%= j(render('select_player', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '65%',
+    title: '选择关联牌手',
+    position: { my: 'top', at: 'top+250' }
+});
