@@ -463,7 +463,7 @@ GEM
     websocket (1.2.4)
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.2)
+    websocket-extensions (0.1.5)
     whenever (0.10.0)
       chronic (>= 0.6.3)
     wx_pay (0.16.1)
